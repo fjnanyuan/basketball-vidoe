@@ -1,5 +1,5 @@
 /* HOOPLOG 离线网页外壳。视频缓存使用 index.html 内的 IndexedDB，Service Worker 不缓存 Google Drive 网络请求。 */
-const CACHE='hooplog-shell-v7';
+const CACHE='hooplog-shell-v8';
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(['./','./index.html','./manifest.webmanifest'])).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil((async()=>{for(const k of await caches.keys())if(k.startsWith('hooplog-shell-')&&k!==CACHE)await caches.delete(k);await self.clients.claim()})())});
 self.addEventListener('fetch',event=>{const req=event.request;const url=new URL(req.url);if(req.method!=='GET'||url.origin!==self.location.origin)return;event.respondWith((async()=>{const cache=await caches.open(CACHE);try{const fresh=await fetch(req);if(fresh.ok&&(/\/index\.html$/.test(url.pathname)||req.mode==='navigate'))cache.put(req,fresh.clone()).catch(()=>{});return fresh}catch(e){const cached=await cache.match(req,{ignoreSearch:true});if(cached)return cached;if(req.mode==='navigate')return (await cache.match('./index.html'))||Response.error();return Response.error()}})())});
