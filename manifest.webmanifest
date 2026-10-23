@@ -1,0 +1,1 @@
+{"name":"HOOPLOG 篮球数据与离线视频","short_name":"HOOPLOG","description":"按日期从 Google Drive 获取视频，整文件夹本地缓存和离线播放","start_url":"./","scope":"./","display":"standalone","background_color":"#101719","theme_color":"#101719","lang":"zh-CN"}
