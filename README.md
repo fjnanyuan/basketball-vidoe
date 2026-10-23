@@ -1,16 +1,7 @@
-# HOOPLOG v4 修复说明
+# HOOPLOG v7 修复说明
 
-1. 删除旧演示文件夹记录，隐藏不属于「南球」总文件夹的旧记录；不会删除已缓存的视频。
-2. 添加「清理旧文件夹记录（保留视频缓存）」按钮，用于尚未绑定总文件夹时清理旧列表。
-3. 修复 v3 Excel 文件后缀正则写错（xlsx/csv 匹配）的问题。
-4. D 列与子文件夹名称匹配，不按日期匹配。
-5. 只在文件夹选择列表显示文件夹全名，详情面板显示“已选择文件夹”，避免视觉重复。
-6. 升级 Service Worker 缓存版本并优先获取最新页面，避免 Safari 长时间显示旧版。
+修复 Safari 中 `null is not an object (evaluating e.message)` 错误：异常对象可能为 null；Google OAuth 返回空响应时现在显示明确提示。保留 Excel A-E 列解析和按 A 列文件夹名匹配、两次 Wi-Fi 确认、缓存功能。
 
-## 更新
-覆盖 GitHub Pages 仓库根目录 `index.html`、`sw.js`、`manifest.webmanifest`，Commit。
-打开网站后先在「文件夹」点击「清理旧文件夹记录」，再粘贴 Google Drive「南球」总文件夹链接并点击同步。
-清理不会删除 IndexedDB videos 表中的本地视频。
+部署：覆盖 GitHub 仓库根目录的 index.html、sw.js、manifest.webmanifest，提交后刷新网页；不要清除 Safari 网站数据。
 
-## 提醒
-同步总文件夹必须成功才能看到真实 Excel 数据；视频下载仍需要两次 Wi-Fi 人工确认，不能保证阻止蜂窝流量。
+截图中的「53 个视频、54 行匹配记录」说明文件夹记录已经匹配，但**不代表 54 个视频都成功匹配**。重新同步后检查统计页和每个视频的动作备注。
