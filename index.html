@@ -21,6 +21,89 @@
 .compare-metric .compare-item b{font-size:15px;white-space:nowrap;font-variant-numeric:tabular-nums}
 .compare-metric .compare-track{height:10px;margin-top:9px;background:#e7eaee}
 .compare-metric .compare-track>div{transition:width .2s ease}
+
+/* v10.2: 四项逐场变化清晰分行，适配 iPhone 窄屏。 */
+.stat-trend{margin:0;padding:16px 0;border-bottom:1px solid var(--line)}
+.stat-trend:last-child{border-bottom:0;padding-bottom:2px}
+.stat-trend:first-child{padding-top:0}
+.stat-trend h3{font-size:14px;margin:0 0 12px;line-height:1.5;overflow-wrap:anywhere}
+.stat-trend-row{padding:6px 0;min-width:0}
+.stat-trend-row>span{min-width:0;line-height:1.45}
+.stat-trend-row small{font-size:12px;color:var(--muted)}
+.stat-trend-label{display:inline-block;min-width:42px;font-size:12px;font-weight:650}
+.stat-trend-row b{flex-shrink:0;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+@media (max-width:350px){.stat-trend-row small{font-size:11px}.stat-trend-row b{font-size:12px}}
+
+/* HOOPLOG v11: 只把统计视图改为清爽的白色，高密度且支持横向滚动。 */
+body.stats-v11-theme{color-scheme:light;--bg:#f7f9fc;--panel:#fff;--panel2:#f2f5f9;--line:#e2e8f0;--muted:#718096;--text:#182333;--green:#2969c9;background:var(--bg)}
+body.stats-v11-theme .tabs{background:#ffffffed;border-color:var(--line)}
+body.stats-v11-theme .tab{color:#718096}
+body.stats-v11-theme .tab[aria-selected=true]{color:#2468c8}
+body.stats-v11-theme .brand span{color:white}
+body.stats-v11-theme .alert{background:#f3f6f9;border-color:#dce4ec;color:#4b5b6a}
+body.stats-v11-theme .hero{background:linear-gradient(120deg,#eef4ff,#e5efff);border-color:#d5e4fa;color:#182333}
+body.stats-v11-theme .score{color:#2468c8}
+body.stats-v11-theme .pill.ok{color:#166245;background:#def7e8}
+body.stats-v11-theme .meter{background:#e5ecf4}
+body.stats-v11-theme .compare-choice{background:white;color:#182333}
+body.stats-v11-theme .compare-chip{background:white;color:#3a495e;border-color:#dce4ef}
+body.stats-v11-theme .compare-chip.active{background:#2568cb;color:#fff;border-color:#2568cb}
+body.stats-v11-theme .compare-tabs{gap:8px;margin:15px 0 13px}
+body.stats-v11-theme .compare-chip{flex:1;text-align:center;padding:10px}
+body.stats-v11-theme .compare-choice input{accent-color:#2568cb}
+body.stats-v11-theme .compare-choice small{white-space:nowrap}
+body.stats-v11-theme .v11-picker{padding:12px 13px;margin:10px 0 14px}
+body.stats-v11-theme .compare-picks{gap:5px;margin:10px 0}
+body.stats-v11-theme .compare-choice{padding:8px 10px;border-radius:10px}
+.v11-pick-actions{display:flex;gap:9px}
+.v11-action-link{border:none;background:transparent;color:#2468c8;font-size:12px;font-weight:700;padding:5px 2px}
+.v11-score-strip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:11px 2px 14px;margin-bottom:12px}
+.v11-score-label{font-size:12px;color:var(--muted);flex-shrink:0}
+.v11-score-sequence{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:16px;font-weight:800;font-variant-numeric:tabular-nums}
+.v11-score-sequence i{font-style:normal;color:#9ba7b5;font-size:12px;font-weight:400}
+.v11-score-delta{margin-left:auto;color:#52647a;font-size:12px;font-weight:650;white-space:nowrap}
+.v11-action-card,.v11-change-card{background:#fff;border:1px solid #e0e7ef;border-radius:15px;margin:10px 0;padding:12px 13px}
+.v11-action-card h3{display:flex;align-items:center;gap:9px;color:#182333;font-size:15px;margin:0 0 8px}
+.v11-action-icon{background:#e9f1fe;color:#2b6fcb;width:27px;height:27px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:17px;font-weight:800}
+.v11-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.v11-action-table{border-collapse:collapse;width:100%;table-layout:fixed;color:#233147;line-height:1.4}
+.v11-action-table th,.v11-action-table td{padding:8px 4px;border-bottom:1px solid #eef2f6;font-size:13px;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.v11-action-table thead th{color:#596d84;font-size:12px;font-weight:650}
+.v11-action-table th:first-child{text-align:left;width:29%}
+.v11-action-table tbody th{font-weight:500;color:#546579}
+.v11-action-table tbody tr:last-child th,.v11-action-table tbody tr:last-child td{border-bottom:0}
+.v11-action-table .v11-rate-row th,.v11-action-table .v11-rate-row td{font-weight:800;color:#1e3558}
+.v11-section-title{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin:23px 0 10px;color:#182333}
+.v11-section-title small{font-size:11px;font-weight:400;color:#728198}
+.v11-change-card{padding:13px 14px;margin:10px 0}
+.v11-change-card>h3{font-size:15px;margin:0 0 12px;color:#1c2d42}
+.v11-change-card>h3 span{color:#8d9bab;padding:0 5px}
+.v11-change-score{display:flex;justify-content:space-between;align-items:center;background:#f1f5f9;padding:11px;border-radius:9px;gap:8px;font-size:13px;color:#273951}
+.v11-change-score em{font-style:normal;font-variant-numeric:tabular-nums;margin-left:6px}
+.v11-change-score b{white-space:nowrap;font-variant-numeric:tabular-nums}
+.v11-change-action{padding:14px 2px 10px;border-bottom:1px solid #edf1f5}
+.v11-change-action:last-child{border-bottom:0;padding-bottom:2px}
+.v11-change-action h4{font-size:13px;margin:0 0 8px;color:#24364b}
+.v11-change-line{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:5px 0;color:#4d6074;font-size:12px}
+.v11-change-line>span{min-width:0;line-height:1.5}
+.v11-change-line>span>small{display:block;font-size:11px;color:#7b8798}
+.v11-change-line>span>span{display:block;font-size:12px;color:#24364b}
+.v11-change-line b{flex-shrink:0;color:#24364b;white-space:nowrap;font-size:12px;font-variant-numeric:tabular-nums}
+.v11-footer-hint,.v11-hint{color:var(--muted);font-size:11px;line-height:1.7;margin:15px 0}
+@media(max-width:365px){.v11-change-line b{font-size:11px}.v11-action-table th,.v11-action-table td{padding:7px 3px;font-size:12px}.v11-change-card{padding:11px}.v11-score-sequence{font-size:14px}}
+
+/* v12: small automatic weekday comparison selector; retains v11 action/score/change panels. */
+body.stats-v11-theme .v12-picker{padding:11px 12px;margin:10px 0 12px}
+.v12-picker-header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.v12-picker-label{font-size:13px;font-weight:800;color:#1d3555}
+.v12-picker-info{font-size:11px;color:#687c90;line-height:1.55;margin-top:2px;overflow-wrap:anywhere}
+.v12-edit-button{border:1px solid #d9e4f0;background:#f4f8fe;color:#2369b9;border-radius:9px;padding:8px 10px;font-size:12px;font-weight:700;white-space:nowrap;flex-shrink:0}
+.v12-chipline{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.v12-chip{background:#eaf1fc;color:#2e568a;padding:4px 8px;border-radius:7px;font-size:11px;font-weight:750;font-variant-numeric:tabular-nums}
+.v12-picker-expanded{border-top:1px solid #e9eef4;margin-top:12px;padding-top:10px}
+.v12-picker-expanded .compare-picks{max-height:310px;overflow-y:auto;overscroll-behavior:contain;margin:0 0 10px}
+.v12-picker-buttons{display:flex;gap:7px;flex-wrap:wrap}
+.v12-picker-buttons button{background:#f0f5fb;border:1px solid #d9e4f0;border-radius:8px;padding:8px 10px;color:#32649a;font-size:11px;font-weight:750}
 </style>
 </head>
 <body>
@@ -37,7 +120,7 @@
 const $=q=>document.querySelector(q), esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const bytes=n=>{n=Number(n||0);return n>=1073741824?(n/1073741824).toFixed(2)+' GB':n>=1048576?(n/1048576).toFixed(1)+' MB':(n/1024).toFixed(1)+' KB'};
 const safeId=s=>String(s??'').trim(); const vidExt=/\.(mp4|m4v|mov|webm)$/i, sheetExt=/\.(xlsx|xls|csv)$/i;
-const state={tab:'folders',folders:[],folderId:null,filter:'全部',token:null,tokenExpiry:0,downloading:false,controller:null,stop:false,stats:[],playerUrl:null,statsMode:'single',statsSelected:[],statsAction:'原地投篮'};
+const state={tab:'folders',folders:[],folderId:null,filter:'全部',token:null,tokenExpiry:0,downloading:false,controller:null,stop:false,stats:[],playerUrl:null,statsMode:'compare',statsSelected:[],statsAction:'原地投篮',statsSelectionCustom:false,statsPickerOpen:false};
 let db;let toastTimer;
 const toast=(msg)=>{const t=$('#toast');t.textContent=msg;t.style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.style.display='none',3500)};
 function openDB(){return new Promise((resolve,reject)=>{let req=indexedDB.open('hooplog-offline-v1',1);req.onupgradeneeded=()=>{let d=req.result; if(!d.objectStoreNames.contains('folders'))d.createObjectStore('folders',{keyPath:'id'});if(!d.objectStoreNames.contains('videos')){let v=d.createObjectStore('videos',{keyPath:'id'});v.createIndex('folderId','folderId',{unique:false})}};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
@@ -60,7 +143,7 @@ async function cleanLegacyMetadata(){
   if(String(f.id).startsWith('demo-')||/【演示】|\[演示\]/.test(f.name||'')||(root&&f.rootId!==root))await idbDelete('folders',f.id);
  }
 }
-async function refreshLocal(){await cleanLegacyMetadata();state.folders=(await idbAll('folders')).sort((a,b)=>String(b.name||'').localeCompare(String(a.name||''),'zh-CN', {numeric:true})||b.savedAt-a.savedAt);if(!state.folders.some(x=>x.id===state.folderId))state.folderId=state.folders[0]?.id||null;await updateCachedCounts();if(!state.statsSelected.length)state.statsSelected=state.folders.map(f=>f.id);render()}
+async function refreshLocal(){await cleanLegacyMetadata();state.folders=(await idbAll('folders')).sort((a,b)=>String(b.name||'').localeCompare(String(a.name||''),'zh-CN', {numeric:true})||b.savedAt-a.savedAt);if(!state.folders.some(x=>x.id===state.folderId))state.folderId=state.folders[0]?.id||null;await updateCachedCounts();if(!state.statsSelectionCustom)state.statsSelected=v12AutoSelection(state.folders).folders.map(f=>f.id);else state.statsSelected=state.statsSelected.filter(id=>state.folders.some(f=>f.id===id));render()}
 async function updateCachedCounts(){let stored=await idbAll('videos');for(let f of state.folders){let entries=stored.filter(v=>v.folderId===f.id);const saved=new Map(entries.map(v=>[v.id,v]));for(const item of f.files)item.cached=!!(saved.has(item.id)&&saved.get(item.id).modifiedTime===item.modifiedTime);f.cached=f.files.filter(x=>x.kind==='video'&&x.cached).length;f.cacheBytes=entries.reduce((n,v)=>n+(v.size||0),0)}}
 function netType(){const conn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;if(!navigator.onLine)return 'offline';if(!conn||!conn.type||conn.type==='unknown')return 'unknown';return conn.type==='wifi'||conn.type==='ethernet'?'wifi':conn.type==='cellular'?'cellular':'unknown'}
 function canDownload(){if(!navigator.onLine)throw Error('当前离线，无法下载视频');if(netType()==='cellular')throw Error('检测到蜂窝网络，已阻止下载');}
@@ -71,10 +154,71 @@ function folderPage(){let f=current();return nav('训练文件夹','选择训练
 
 function statRate(m,n){return n?(100*m/n).toFixed(1)+'%':'—'}
 function statDelta(a,b,unit){const diff=b-a;return `${diff>0?'+':''}${diff.toFixed(1)}${unit}`}
+function statCountDelta(a,b,unit){const diff=b-a;return `${diff>0?'+':''}${diff}${unit}`}
+// 逐场变化统一从原始计数计算：绝不对字符串（如 "34.8%"）进行减法。
+function v11DiffNumber(a,b,unit){
+ if(!Number.isFinite(a)||!Number.isFinite(b))return '—';
+ const n=b-a;return `${n>0?'+':''}${n}${unit}`;
+}
+function v11DiffRate(a,b){
+ if(!a||!b||!a.total||!b.total)return '—';
+ const n=100*b.made/b.total-100*a.made/a.total;
+ return `${n>0?'+':''}${n.toFixed(1)} 个百分点`;
+}
+function v11Rate(x){return x&&x.total?statRate(x.made,x.total):'—'}
+function v11Date(name){
+ const raw=String(name||'').normalize('NFKC');
+ let m=raw.match(/^(?:20\d{2}[-/.年]?)?(\d{1,2})[-/.月]?(\d{1,2})(?!\d)/);
+ if(!m)m=raw.match(/(\d{2})(\d{2})/);
+ return m?`${m[1].padStart(2,'0')}/${m[2].padStart(2,'0')}`:raw;
+}
+
+// v12 自动对比：按实际日期辨认最新一场训练，再自动选择这一天所在星期的最近 4 场。
+// 日期来自文件夹名前缀（如 1028、20261028、2026-10-28），绝不根据“周三”字样或固定星期表猜测。
+function v12TodayTokyo(){
+ const date=new Date(Date.now()+9*3600000);
+ return {year:date.getUTCFullYear(),stamp:Date.UTC(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate())};
+}
+function v12DateInfo(name){
+ const raw=String(name||'').normalize('NFKC').trim();
+ let match=raw.match(/^(20\d{2})[-/.年]?(\d{1,2})[-/.月]?(\d{1,2})(?!\d)/);
+ let year,month,day;
+ if(match){year=Number(match[1]);month=Number(match[2]);day=Number(match[3]);}
+ else{
+  match=raw.match(/^(\d{1,2})[-/.月]?(\d{1,2})(?!\d)/);
+  if(!match)return null;
+  month=Number(match[1]);day=Number(match[2]);
+  year=v12TodayTokyo().year;
+ }
+ if(month<1||month>12||day<1||day>31)return null;
+ let stamp=Date.UTC(year,month-1,day),dt=new Date(stamp);
+ if(dt.getUTCFullYear()!==year||dt.getUTCMonth()+1!==month||dt.getUTCDate()!==day)return null;
+ const today=v12TodayTokyo();
+ if(!raw.match(/^20\d{2}/)&&stamp>today.stamp){
+  // 无年份的 12 月记录在次年 1 月仍应识别为上一年；不把它当未来训练。
+  year--;stamp=Date.UTC(year,month-1,day);dt=new Date(stamp);
+  if(dt.getUTCFullYear()!==year||dt.getUTCMonth()+1!==month||dt.getUTCDate()!==day)return null;
+ }
+ if(stamp>today.stamp)return null;
+ return {stamp,weekday:dt.getUTCDay(),year,month,day};
+}
+function v12AutoSelection(folders){
+ const dated=folders.map(f=>({f,date:v12DateInfo(f.name)})).filter(x=>x.date)
+   .sort((a,b)=>b.date.stamp-a.date.stamp||String(b.f.name).localeCompare(String(a.f.name),'zh-CN',{numeric:true}));
+ if(!dated.length){
+  const fallback=[...folders].sort((a,b)=>Number(b.savedAt||0)-Number(a.savedAt||0)||String(b.name).localeCompare(String(a.name),'zh-CN',{numeric:true})).slice(0,4).reverse();
+  return {folders:fallback,latest:null,weekday:null,fallback:true};
+ }
+ const latest=dated[0],weekday=latest.date.weekday;
+ // 如果同一天有 A/B 两个场地文件夹，两份记录也各作为一个可选训练场次。
+ const match=dated.filter(x=>x.date.weekday===weekday).slice(0,4).reverse().map(x=>x.f);
+ return {folders:match,latest:latest.f,weekday,fallback:false};
+}
+function v12Weekday(n){return ['周日','周一','周二','周三','周四','周五','周六'][n]||'未知星期'}
 function statsPage(){
  const all=[...state.folders].sort((a,b)=>{
-  const key=x=>{let n=String(x.name||'').normalize('NFKC'),m=n.match(/^(?:20\d{2}[-/.年]?)?(\d{2})(\d{2})/);return m?Number(m[1])*100+Number(m[2]):0};
-  return key(a)-key(b)||String(a.name).localeCompare(String(b.name),'zh-CN',{numeric:true});
+  const da=v12DateInfo(a.name),db=v12DateInfo(b.name);
+  return (da?.stamp||0)-(db?.stamp||0)||String(a.name).localeCompare(String(b.name),'zh-CN',{numeric:true});
  });
  if(!all.length)return nav('数据统计','按 Excel 原始动作记录统计')+'<div class="empty">请先在「设置」同步篮球文件夹</div>';
  const selected=all.filter(f=>state.statsSelected.includes(f.id));
@@ -90,48 +234,53 @@ function statsPage(){
   const f=current()||all[0],st=stats(f),rate=statRate(st.made,st.total);
   body=`<div class="hero"><div class="muted">当前训练 · ${esc(f.name)}</div><div class="score">${st.points}<small> PTS</small></div><div class="row"><span>出手 ${st.total} · 命中 ${st.made}</span><span class="pill ok">${rate}</span></div></div><div class="grid3">${summaryCard('视频文件',vfiles(f).length)}${summaryCard('动作记录',st.recorded)}${summaryCard('已离线',f.cached||0)}</div><h2>动作分析</h2><div class="panel">${st.cats.map(c=>`<div class="shot"><div class="row"><b>${esc(c.name)}</b><b>${statRate(c.made,c.total)}</b></div><div class="muted">${c.made} 中 / ${c.total} 投</div><div class="meter"><div style="width:${c.total?100*c.made/c.total:0}%"></div></div></div>`).join('')}</div><div class="grid2">${summaryCard('无效运球',st.invalid)}${summaryCard('失误',st.turnovers)}</div>`;
  }else{
-  body=`<div class="panel"><b>选择参与${mode==='compare'?'对比':'汇总'}的训练</b><div class="compare-picks">${folderPicker}</div><div class="muted">已选 ${selected.length} 场 · 按文件夹名称中的月日从早到晚排列</div></div>`;
+  const auto=v12AutoSelection(all);
+  if(mode==='compare'){
+   const label=auto.fallback?'按最近更新的训练推荐':`最新训练 ${esc(auto.latest?.name||'')} · ${v12Weekday(auto.weekday)}近 ${auto.folders.length} 场`;
+   const chips=selected.map(f=>`<span class="v12-chip" title="${esc(f.name)}">${esc(v11Date(f.name))}</span>`).join('');
+   body=`<section class="panel v12-picker"><div class="v12-picker-header"><div><div class="v12-picker-label">${state.statsSelectionCustom?'自定义对比':'自动推荐对比'}</div><div class="v12-picker-info">${state.statsSelectionCustom?'已手动选择场次':label}</div></div><button type="button" class="v12-edit-button" data-stat-picker-toggle="1" aria-expanded="${state.statsPickerOpen}">${state.statsPickerOpen?'收起':'调整场次'}</button></div><div class="v12-chipline">${chips||'<span class="muted">尚未选择场次</span>'}</div>${state.statsPickerOpen?`<div class="v12-picker-expanded"><div class="compare-picks">${folderPicker}</div><div class="v12-picker-buttons"><button type="button" data-stat-reset="1">恢复自动推荐</button><button type="button" data-stat-preset="recent">最近两场</button><button type="button" data-stat-preset="all">全选</button></div></div>`:''}</section>`;
+  }else{
+   body=`<div class="panel v11-picker"><div class="row"><b>选择参与汇总的训练</b><div class="v11-pick-actions"><button class="v11-action-link" data-stat-reset="1" type="button">自动推荐</button><button class="v11-action-link" data-stat-preset="all" type="button">全选</button></div></div><div class="compare-picks">${folderPicker}</div><div class="muted">已选 ${selected.length} 场 · 按日期从早到晚排列</div></div>`;
+  }
   if(!groups.length)body+='<div class="empty">请至少勾选一场训练</div>';
   else if(mode==='summary'){
    body+=`<div class="hero"><div class="muted">所选 ${groups.length} 场 · 合计得分</div><div class="score">${total.points}<small> PTS</small></div><div class="row"><span>出手 ${total.total} · 命中 ${total.made}</span><span class="pill ok">${statRate(total.made,total.total)}</span></div></div><div class="grid3">${summaryCard('视频总数',groups.reduce((n,g)=>n+vfiles(g.f).length,0))}${summaryCard('动作记录',total.recorded)}${summaryCard('已缓存',groups.reduce((n,g)=>n+(g.f.cached||0),0))}</div><h2>动作汇总</h2><div class="panel">${stats(all[0]).cats.map(c=>{let made=groups.reduce((n,g)=>n+(g.s.cats.find(x=>x.name===c.name)?.made||0),0),shots=groups.reduce((n,g)=>n+(g.s.cats.find(x=>x.name===c.name)?.total||0),0);return `<div class="shot"><div class="row"><b>${esc(c.name)}</b><b>${statRate(made,shots)}</b></div><small>${made} 中 / ${shots} 投</small></div>`}).join('')}</div>`;
   }else{
-   // 方案一：四个指标全部展开，各场固定颜色，不再逐个点按钮。
-   // 比例基准：命中率以 100% 为上限；得分、出手、命中以当前所选场次的最大值为上限。
-   const metrics=[
-    {id:'rate',name:'命中率',value:g=>g.s.total?100*g.s.made/g.s.total:0,display:g=>statRate(g.s.made,g.s.total)},
-    {id:'points',name:'得分',value:g=>g.s.points,display:g=>g.s.points+' 分'},
-    {id:'total',name:'出手',value:g=>g.s.total,display:g=>g.s.total+' 次'},
-    {id:'made',name:'命中',value:g=>g.s.made,display:g=>g.s.made+' 次'}
-   ];
-   const colors=['#3979e7','#e98c39','#269e81','#9775d4','#d15e81','#66a7bd','#e0ba4d'];
-   const folderColor=g=>colors[all.findIndex(f=>f.id===g.f.id)%colors.length];
-   body+='<h2>训练表现对比</h2><div class="muted">四项指标同时显示 · 各训练场次使用固定颜色</div>';
-   body+=metrics.map(metric=>{
-    const max=metric.id==='rate'?100:Math.max(1,...groups.map(metric.value));
-    return `<section class="panel compare-metric" aria-label="${metric.name}对比"><h3>${metric.name}</h3>${groups.map(g=>{
-     const raw=metric.value(g);
-     const percent=Math.min(100,Math.max(0,raw/max*100));
-     return `<div class="compare-item"><div class="row"><span class="compare-session"><i class="compare-legend" style="background:${folderColor(g)}"></i>${esc(g.f.name)}</span><b>${metric.display(g)}</b></div><div class="compare-track" role="img" aria-label="${esc(g.f.name)} ${metric.name} ${metric.display(g)}"><div style="width:${percent}%;background:${folderColor(g)}"></div></div></div>`;
-    }).join('')}</section>`;
+   const actions=[{name:'原地投篮',icon:'◎'},{name:'一次突破上篮',icon:'↗'}];
+   const findAction=(g,name)=>g.s.cats.find(c=>c.name===name)||{made:0,total:0};
+   // 得分只占一条：避免大卡片压过两个动作的统计。
+   const first=groups[0],last=groups[groups.length-1];
+   body+=`<div class="v11-score-strip"><span class="v11-score-label">总得分</span><span class="v11-score-sequence">${groups.map((g,i)=>`${i?'<i aria-hidden="true">→</i>':''}<span title="${esc(g.f.name)}">${g.s.points}</span>`).join('')}</span>${groups.length>=2?`<span class="v11-score-delta">${v11DiffNumber(first.s.points,last.s.points,' 分')}</span>`:''}</div>`;
+   // 手机端紧凑表格，多个场次列可水平滚动；不能有 NaN。
+   body+=actions.map(action=>{
+    const tableRows=[{label:'出手',value:g=>findAction(g,action.name).total},{label:'命中',value:g=>findAction(g,action.name).made},{label:'命中率',rate:true,value:g=>v11Rate(findAction(g,action.name))}];
+    return `<section class="v11-action-card" aria-label="${action.name}对比"><h3><span class="v11-action-icon">${action.icon}</span>${action.name}</h3><div class="v11-table-wrap"><table class="v11-action-table" style="min-width:${groups.length>4?85+groups.length*68+'px':'100%'}"><thead><tr><th scope="col">指标</th>${groups.map(g=>`<th scope="col" title="${esc(g.f.name)}">${esc(v11Date(g.f.name))}</th>`).join('')}</tr></thead><tbody>${tableRows.map(r=>`<tr class="${r.rate?'v11-rate-row':''}"><th scope="row">${r.label}</th>${groups.map(g=>`<td>${r.value(g)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></section>`;
    }).join('');
    if(groups.length>=2){
-    body+='<h2>逐场变化（从早到晚）</h2><div class="panel">';
+    body+='<h2 class="v11-section-title">逐场变化 <small>从早到晚 · 完整指标</small></h2>';
     for(let i=1;i<groups.length;i++){
-     const prev=groups[i-1],cur=groups[i],a=prev.s.total?100*prev.s.made/prev.s.total:0,b=cur.s.total?100*cur.s.made/cur.s.total:0;
-     body+=`<div class="shot"><b>${esc(prev.f.name)} → ${esc(cur.f.name)}</b><div class="row"><small>命中率 ${statRate(prev.s.made,prev.s.total)} → ${statRate(cur.s.made,cur.s.total)}</small><b>${statDelta(a,b,' 个百分点')}</b></div><div class="row"><small>得分 ${prev.s.points} → ${cur.s.points}</small><b>${cur.s.points-prev.s.points>0?'+':''}${cur.s.points-prev.s.points} 分</b></div></div>`;
+     const prev=groups[i-1],cur=groups[i];
+     body+=`<section class="v11-change-card"><h3 title="${esc(prev.f.name+' → '+cur.f.name)}">${esc(v11Date(prev.f.name))} <span>→</span> ${esc(v11Date(cur.f.name))}</h3><div class="v11-change-score"><span>总得分 <em>${prev.s.points} → ${cur.s.points}</em></span><b>${v11DiffNumber(prev.s.points,cur.s.points,' 分')}</b></div>`;
+     body+=actions.map((action,j)=>{
+      const a=findAction(prev,action.name),b=findAction(cur,action.name);
+      return `<div class="v11-change-action"><h4>${action.name}</h4><div class="v11-change-line"><span><small>命中率</small><span>${v11Rate(a)} → ${v11Rate(b)}</span></span><b>${v11DiffRate(a,b)}</b></div><div class="v11-change-line"><span>出手 ${a.total} → ${b.total}</span><b>${v11DiffNumber(a.total,b.total,' 次')}</b></div><div class="v11-change-line"><span>命中 ${a.made} → ${b.made}</span><b>${v11DiffNumber(a.made,b.made,' 次')}</b></div></div>`;
+     }).join('');
+     body+='</section>';
     }
-    body+='</div>';
+   }else{
+    body+='<div class="v11-hint">选择至少两场训练后，可查看逐场变化。</div>';
    }
-   const actions=stats(all[0]).cats.map(x=>x.name);
-   body+=`<h2>具体动作对比</h2><div class="panel"><label for="statAction">选择动作</label><select id="statAction" class="input">${actions.map(x=>`<option ${x===state.statsAction?'selected':''}>${esc(x)}</option>`).join('')}</select>${groups.map((g,i)=>{const x=g.s.cats.find(c=>c.name===state.statsAction)||{made:0,total:0};return `<div class="compare-item"><div class="row"><span>${esc(g.f.name)}</span><b>${x.made}/${x.total} · ${statRate(x.made,x.total)}</b></div><div class="compare-track"><div style="width:${x.total?x.made/x.total*100:0}%;background:${colors[all.findIndex(f=>f.id===g.f.id)%colors.length]}"></div></div></div>`}).join('')}</div>`;
   }
  }
- return nav('数据统计','单次查看 · 多场汇总 · 训练对比')+`<div class="compare-tabs">${[['single','单次'],['summary','汇总'],['compare','对比']].map(([id,name])=>`<button class="compare-chip ${mode===id?'active':''}" data-stat-mode="${id}">${name}</button>`).join('')}</div>`+body+`<div class="alert">得分仍按每次命中 2 分估算；一个视频可以对应多条动作记录。对比仅改变统计视图，不会切换视频播放文件夹或下载视频。</div>`;
+ return nav('数据统计','单次查看 · 多场汇总 · 训练对比')+`<div class="compare-tabs">${[['single','单次'],['summary','汇总'],['compare','对比']].map(([id,name])=>`<button class="compare-chip ${mode===id?'active':''}" data-stat-mode="${id}">${name}</button>`).join('')}</div>`+body+`<div class="v11-footer-hint">得分按每次命中 2 分估算；统计来自 Excel 动作记录。对比不会切换视频文件夹，也不会清除已缓存的视频。</div>`;
 }
+function videoRecords(folder,video){const key=normalizeName(video.name);return (folder?.records||[]).filter(r=>normalizeName(r.clip)===key)}
+function actionGroup(action){const a=String(action||'').trim();if(!a)return '未分类';if(/失误|无效运球|违例/.test(a))return '失误/其他';if(/突破/.test(a))return '突破类';if(/投篮|跳投|三分|中投|远投/.test(a))return '投篮类';if(/上篮|篮下|补篮|终结|扣篮/.test(a))return '篮下终结类';if(/传球|助攻/.test(a))return '传球类';if(/防守|抢断|盖帽|篮板/.test(a))return '防守/篮板类';return '其他动作'}
+function clipGroups(folder,video){const rows=videoRecords(folder,video);return rows.length?[...new Set(rows.map(r=>actionGroup(r.action)))]:['未分类']}
 function clipsPage(){let f=current();if(!f)return nav('视频片段','本机已缓存才允许播放')+'<div class="empty">先选择一个子文件夹</div>';let all=vfiles(f);const options=['全部','投篮类','突破类','篮下终结类','传球类','防守/篮板类','失误/其他','其他动作','未分类','已缓存','未缓存','命中','未中'];let rows=all.filter(x=>{let rr=videoRecords(f,x);return state.filter==='全部'||state.filter==='已缓存'&&x.cached||state.filter==='未缓存'&&!x.cached||state.filter==='命中'&&rr.some(r=>r.result==='成功')||state.filter==='未中'&&rr.some(r=>r.result==='失败')||clipGroups(f,x).includes(state.filter)});return nav('视频片段',esc(f.name)+' · 根据 Excel 动作自动分类 · 离线播放')+`<div class="filters">${options.map(x=>`<button class="filter ${state.filter===x?'active':''}" data-filter="${x}">${x}</button>`).join('')}</div><div class="tinyrow">${rows.length} 个视频 · 一个视频可以同时属于多个类别 · 未缓存不联网播放</div>${rows.map(v=>{let rr=videoRecords(f,v);let labels=rr.map(r=>[r.action||'未分类',r.result,r.note].filter(Boolean).join(' · '));return `<button class="clip" data-play="${esc(v.id)}"><span class="ico">▶</span><span class="info"><b>${esc(v.name)}</b><small>${esc(clipGroups(f,v).join(' / '))}</small><small>${esc(labels.join('；').slice(0,160)||'没有动作记录')}</small></span><span class="pill ${v.cached?'ok':'warn'}">${v.cached?'已离线':'未缓存'}</span></button>`}).join('')||'<div class="empty">没有符合条件的片段</div>'}`;}
 function settingsPage(){let id=localStorage.getItem('hooplog_client_id')||'',root=localStorage.getItem('hooplog_root_url')||'';return nav('网站设置','一次配置后，下次直接用你的 Google Drive')+`<div class="panel stack"><h3>Google Drive 授权</h3><div class="field"><label for="clientId">Google Cloud 网页 OAuth 客户端 ID（不是密钥）</label><input class="input" id="clientId" value="${esc(id)}" placeholder="xxxxxxxx.apps.googleusercontent.com" autocapitalize="off"></div><div class="row wrap"><button class="btn" id="saveClient">保存客户端 ID</button><button class="btn secondary" id="googleLogin">使用 Google 登录</button><button class="btn secondary" id="signout">退出本次登录</button></div><div class="tinyrow" id="authState">${state.token&&Date.now()<state.tokenExpiry?'● 已获取授权':'○ 尚未登录或授权已过期'}</div><div class="subnote">授权只在当前网页运行期间使用；不保存访问令牌。第一次使用需在 Google Cloud 启用 Drive API，并把 GitHub Pages 域名加入 OAuth 授权来源。</div></div><div class="panel stack"><h3>Google Drive · 篮球总文件夹</h3><div class="field"><label for="folderUrl">只需首次粘贴「篮球」文件夹链接</label><input id="folderUrl" class="input" value="${esc(root)}" placeholder="https://drive.google.com/drive/folders/..." inputmode="url" autocomplete="off"></div><button class="btn" id="syncRoot">↻ 同步子文件夹与 Excel</button><div class="subnote">总文件夹中放一本记录 Excel。Excel A 列填写完整子文件夹名，B 列填写原始视频文件名，C 列动作、D 列结果、E 列备注（第一行可直接是数据）。同步按文件夹名对应记录，不再按日期匹配；不会下载视频内容。</div><div id="importStatus" class="progress"></div><button class="btn secondary" id="clearOldFolders">清理旧文件夹记录（保留视频缓存）</button></div><div class="panel"><h3>本机空间</h3><div id="storageInfo" class="tinyrow">正在读取...</div><button class="btn secondary tiny" id="refreshStorage" style="margin-top:10px">更新存储信息</button><div class="subnote">浏览器可能在存储紧张或清理网站数据时自动清除离线视频；不能保证永久保留。建议 Safari 添加到主屏幕，并在出门前确认缓存状态。</div></div><div class="panel"><h3>使用须知</h3><div class="tinyrow">① GitHub Pages 仅提供网页代码，视频不会上传到 GitHub。<br>② 文件保留在 Google Drive；已获取的副本保存在本机浏览器 IndexedDB。<br>③ 无网络仍可看已缓存视频；没有缓存的视频无法播放。<br>④ 纯网页不能读取 iPhone 的真实 Wi-Fi 状态，也不能保证后台长时间下载。<br>⑤ 使用个人 Google 账号 OAuth 测试模式时，请将自己列为测试用户。</div></div>`}
-function render(){setBadge();$('#page').innerHTML=state.tab==='folders'?folderPage():state.tab==='stats'?statsPage():state.tab==='clips'?clipsPage():settingsPage();document.querySelectorAll('[data-tab]').forEach(el=>el.setAttribute('aria-selected',String(el.dataset.tab===state.tab)));if(state.tab==='clips'){const f=current();for(const v of vfiles(f)){v.cached=!!v.cached}}if(state.tab==='settings')refreshStorage()}
-function setTab(name){state.tab=name;render()}
+function render(){document.body.classList.toggle('stats-v11-theme',state.tab==='stats');setBadge();$('#page').innerHTML=state.tab==='folders'?folderPage():state.tab==='stats'?statsPage():state.tab==='clips'?clipsPage():settingsPage();document.querySelectorAll('[data-tab]').forEach(el=>el.setAttribute('aria-selected',String(el.dataset.tab===state.tab)));if(state.tab==='clips'){const f=current();for(const v of vfiles(f)){v.cached=!!v.cached}}if(state.tab==='settings')refreshStorage()}
+function setTab(name){if(name==='stats'&&!state.statsSelectionCustom)state.statsSelected=v12AutoSelection(state.folders).folders.map(f=>f.id);state.tab=name;render()}
 function toFolderId(s){s=safeId(s);let m=s.match(/\/folders\/([\w-]+)/);if(m)return m[1];if(/^[\w-]{15,}$/.test(s))return s;throw Error('请输入 Google Drive 的文件夹链接或文件夹 ID')}
 function lazyGoogle(){return new Promise((ok,fail)=>{if(window.google?.accounts?.oauth2)return ok();let sc=document.createElement('script');sc.src='https://accounts.google.com/gsi/client';sc.async=true;sc.onload=ok;sc.onerror=()=>fail(Error('Google 登录组件加载失败，请检查网络'));document.head.appendChild(sc)})}
 let tokenClient;
@@ -277,8 +426,8 @@ function convertRows(rows,folder){let i=rows.findIndex(x=>{let text=(x||[]).slic
 async function importExcelBlob(blob,name){let f=current();if(!f)throw Error('先选择一个子文件夹');let rows;if(/\.csv$/i.test(name))rows=parseCSV((await blob.text()).replace(/^\uFEFF/,''));else{await loadSheetJS();let wb=XLSX.read(await blob.arrayBuffer(),{type:'array',cellDates:false});let sheet=wb.SheetNames.find(x=>x.includes('小岩')&&!x.includes('汇总'))||wb.SheetNames[0];rows=XLSX.utils.sheet_to_json(wb.Sheets[sheet],{header:1,defval:'',raw:true})}let records=convertRows(rows,f);if(!records.length)throw Error('没有匹配当前日期的有效 Excel 记录');f.records=records;f.savedAt=Date.now();await idbPut('folders',{id:f.id,name:f.name,date:f.date,files:f.files,records,savedAt:f.savedAt});await refreshLocal();let match=vfiles(f).filter(x=>fileRecord(f,x)).length;toast(`已导入 ${records.length} 条记录；匹配 ${match} 个视频`);return {records:records.length,match}}
 async function importDriveExcel(){let f=current();if(!f)throw Error('先选择文件夹');let arr=f.files.filter(x=>x.kind==='sheet').sort((a,b)=>(b.modifiedTime||'').localeCompare(a.modifiedTime||''));if(!arr.length)throw Error('该文件夹没有 Excel/CSV，请选择本地 Excel');await auth();let file=arr[0];let res=await driveFetch('https://www.googleapis.com/drive/v3/files/'+encodeURIComponent(file.id)+'?alt=media');return importExcelBlob(await res.blob(),file.name)}
 async function refreshStorage(){let el=$('#storageInfo');if(!el)return;try{let e=await navigator.storage.estimate();let v=await idbAll('videos');let cache=v.reduce((s,x)=>s+Number(x.size||0),0);el.textContent=`视频实际保存 ${v.length} 个（约 ${bytes(cache)}）· 浏览器已使用 ${bytes(e.usage)} · 可用配额上限 ${bytes(e.quota)}（估计值）`}catch(err){el.textContent='浏览器无法提供存储使用量'}}
-async function eventClick(e){let t=e.target.closest('button, label');if(!t)return;try{if(t.dataset.tab){setTab(t.dataset.tab);return}if(t.dataset.statMode){state.statsMode=t.dataset.statMode;render();return}if(t.dataset.pick){state.folderId=t.dataset.pick;await updateCachedCounts();render();return}if(t.dataset.filter){state.filter=t.dataset.filter;render();return}if(t.dataset.play){await play(t.dataset.play);return}switch(t.id){case 'syncRoot':await syncRoot();break;case 'clearOldFolders':{if(!confirm('清理以前导入的文件夹记录和演示数据？不会删除已缓存的视频。清理后需要重新同步「篮球」。'))break;for(const f of await idbAll('folders'))await idbDelete('folders',f.id);state.folderId=null;await refreshLocal();toast('旧文件夹记录已清理，视频缓存未删除');break;}case 'downloadAll':await cacheFolder();break;case 'stop':state.stop=true;state.controller?.abort();toast('正在停止下载');break;case 'clearFolder':await clearFolder();break;case 'saveClient':{let val=$('#clientId').value.trim();if(val&&!/\.apps\.googleusercontent\.com$/.test(val))throw Error('客户端 ID 格式不正确');localStorage.setItem('hooplog_client_id',val);state.token=null;state.tokenExpiry=0;toast('客户端 ID 已保存');render();break}case 'googleLogin':{await auth();toast('Google 授权成功');render();break}case 'signout':{let tkn=state.token;state.token=null;state.tokenExpiry=0;if(tkn&&window.google?.accounts?.oauth2)google.accounts.oauth2.revoke(tkn,()=>{});render();break}case 'refreshStorage':await refreshStorage();break;case 'closeVideo':closePlayer();break;}}catch(err){console.error('HOOPLOG operation failed',err);const message=err instanceof Error?err.message:(typeof err==='string'?err:(err&&typeof err.message==='string'?err.message:'操作失败（浏览器返回了空错误信息，请检查 Google 授权）'));toast(message);const p=$('#downloadProgress');if(p&&!state.downloading)p.textContent='操作未完成：'+message;const im=$('#importStatus');if(im)im.textContent='操作未完成：'+message}}
-document.addEventListener('click',eventClick);document.addEventListener('change',async e=>{if(e.target.dataset?.statFolder){const id=e.target.dataset.statFolder;state.statsSelected=e.target.checked?[...new Set([...state.statsSelected,id])]:state.statsSelected.filter(x=>x!==id);render();return}if(e.target.id==='statAction'){state.statsAction=e.target.value;render();return}if(false && e.target.id==='excelInput'){let file=e.target.files?.[0];if(!file)return;try{let r=await importExcelBlob(file,file.name);let el=$('#importStatus');if(el)el.textContent=`Excel 成功：${r.records} 条记录，${r.match} 个视频匹配`}catch(err){toast(err?.message||'导入失败');let el=$('#importStatus');if(el)el.textContent=err?.message||'导入失败'}}});
+async function eventClick(e){let t=e.target.closest('button, label');if(!t)return;try{if(t.dataset.tab){setTab(t.dataset.tab);return}if(t.dataset.statMode){state.statsMode=t.dataset.statMode;render();return}if(t.dataset.statPickerToggle){state.statsPickerOpen=!state.statsPickerOpen;render();return}if(t.dataset.statReset){state.statsSelectionCustom=false;state.statsSelected=v12AutoSelection(state.folders).folders.map(f=>f.id);render();return}if(t.dataset.statPreset){const sorted=[...state.folders].sort((a,b)=>{let x=String(a.name).match(/^(?:20\d{2})?(\d{2})(\d{2})/),y=String(b.name).match(/^(?:20\d{2})?(\d{2})(\d{2})/);return (x?Number(x[1])*100+Number(x[2]):0)-(y?Number(y[1])*100+Number(y[2]):0)||String(a.name).localeCompare(String(b.name),'zh-CN',{numeric:true})});state.statsSelectionCustom=true;state.statsSelected=(t.dataset.statPreset==='all'?sorted:sorted.slice(-2)).map(f=>f.id);render();return}if(t.dataset.pick){state.folderId=t.dataset.pick;await updateCachedCounts();render();return}if(t.dataset.filter){state.filter=t.dataset.filter;render();return}if(t.dataset.play){await play(t.dataset.play);return}switch(t.id){case 'syncRoot':await syncRoot();break;case 'clearOldFolders':{if(!confirm('清理以前导入的文件夹记录和演示数据？不会删除已缓存的视频。清理后需要重新同步「篮球」。'))break;for(const f of await idbAll('folders'))await idbDelete('folders',f.id);state.folderId=null;await refreshLocal();toast('旧文件夹记录已清理，视频缓存未删除');break;}case 'downloadAll':await cacheFolder();break;case 'stop':state.stop=true;state.controller?.abort();toast('正在停止下载');break;case 'clearFolder':await clearFolder();break;case 'saveClient':{let val=$('#clientId').value.trim();if(val&&!/\.apps\.googleusercontent\.com$/.test(val))throw Error('客户端 ID 格式不正确');localStorage.setItem('hooplog_client_id',val);state.token=null;state.tokenExpiry=0;toast('客户端 ID 已保存');render();break}case 'googleLogin':{await auth();toast('Google 授权成功');render();break}case 'signout':{let tkn=state.token;state.token=null;state.tokenExpiry=0;if(tkn&&window.google?.accounts?.oauth2)google.accounts.oauth2.revoke(tkn,()=>{});render();break}case 'refreshStorage':await refreshStorage();break;case 'closeVideo':closePlayer();break;}}catch(err){console.error('HOOPLOG operation failed',err);const message=err instanceof Error?err.message:(typeof err==='string'?err:(err&&typeof err.message==='string'?err.message:'操作失败（浏览器返回了空错误信息，请检查 Google 授权）'));toast(message);const p=$('#downloadProgress');if(p&&!state.downloading)p.textContent='操作未完成：'+message;const im=$('#importStatus');if(im)im.textContent='操作未完成：'+message}}
+document.addEventListener('click',eventClick);document.addEventListener('change',async e=>{if(e.target.dataset?.statFolder){const id=e.target.dataset.statFolder;state.statsSelectionCustom=true;state.statsSelected=e.target.checked?[...new Set([...state.statsSelected,id])]:state.statsSelected.filter(x=>x!==id);render();return}if(e.target.id==='statAction'){state.statsAction=e.target.value;render();return}if(false && e.target.id==='excelInput'){let file=e.target.files?.[0];if(!file)return;try{let r=await importExcelBlob(file,file.name);let el=$('#importStatus');if(el)el.textContent=`Excel 成功：${r.records} 条记录，${r.match} 个视频匹配`}catch(err){toast(err?.message||'导入失败');let el=$('#importStatus');if(el)el.textContent=err?.message||'导入失败'}}});
 window.addEventListener('online',()=>{setBadge()});window.addEventListener('offline',()=>{state.stop=true;state.controller?.abort();setBadge()});document.addEventListener('visibilitychange',()=>{if(document.hidden&&state.downloading){state.stop=true;state.controller?.abort();toast('页面进入后台，下载已暂停')}});
 (async()=>{try{db=await openDB();await refreshLocal();if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(e=>console.warn('SW unavailable',e));}catch(e){console.error(e);$('#page').innerHTML='<div class="alert danger">当前浏览器无法使用本地视频数据库，请尝试从 Safari 打开 HTTPS 网站并关闭无痕模式。'+esc(e?.message||'未知错误')+'</div>'}})();
 })();
