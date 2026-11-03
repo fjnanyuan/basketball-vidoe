@@ -209,6 +209,25 @@ body.training-v14-theme .subtitle{color:#75869b}
 .train14-root .train14-stat small{font-size:11px;color:#75869d}
 .train14-root .train14-actions{display:grid;grid-template-columns:2fr 1fr;gap:9px;margin-top:10px}
 .train14-root .train14-tip{font-size:12px;line-height:1.7;color:#677c92;margin:12px 2px 14px}
+/* v15 每日计划和本地训练历史 */
+.train14-root .train14-plan{background:#fff;border:1px solid #d9e5f3;border-radius:15px;padding:13px 14px;margin:10px 0}
+.train14-root .train14-plan-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.train14-root .train14-plan-top strong{color:#223853;font-size:15px}
+.train14-root .train14-plan-pill{background:#fff4e2;color:#a26919;padding:4px 9px;font-size:11px;border-radius:99px;font-weight:700;white-space:nowrap}
+.train14-root .train14-plan-pill.done{background:#e5f7ed;color:#188456}
+.train14-root .train14-plan-count{display:flex;align-items:baseline;gap:5px;margin-top:5px}
+.train14-root .train14-plan-count b{font-size:27px;color:#2b72cc;font-variant-numeric:tabular-nums}
+.train14-root .train14-plan-count span{font-weight:750;color:#354c68}
+.train14-root .train14-plan-count small{font-size:11px;color:#8796ab;margin-left:auto}
+.train14-root .train14-plan-last{font-size:12px;color:#60738e;border-top:1px solid #eef1f5;margin-top:8px;padding-top:8px}
+.train14-root .train14-history-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.train14-root .train14-history-head strong{font-size:15px}
+.train14-root .train14-history-head>span{font-size:11px;color:#8795a8}
+.train14-root .train14-history-row{display:flex;justify-content:space-between;align-items:center;gap:5px;font-size:12px;border-top:1px solid #ecf0f6;padding:10px 0}
+.train14-root .train14-history-row small{color:#8795a8}
+.train14-root .train14-history-row>span:last-child{text-align:right;color:#506581}
+.train14-root .train14-probability{font-size:12px;color:#647992;margin-top:10px}
+.train14-root .train14-probability b{color:#256cc5}
 body.training-v14-focus{padding-bottom:0;background:#f6f8fc}
 body.training-v14-focus main{padding:0;max-width:760px}
 body.training-v14-focus main>header,body.training-v14-focus nav.tabs{display:none}
@@ -219,7 +238,7 @@ body.training-v14-focus .train14-arena{margin-top:3px}
 body.training-v14-focus .train14-actions{margin-top:4px;margin-bottom:8px}
 body.training-v14-focus .train14-cue{min-height:156px}
 body.training-v14-focus .train14-cue-large{font-size:clamp(39px,11vw,57px)}
-body.training-v14-focus .train14-tip{display:none}
+body.training-v14-focus .train14-tip,body.training-v14-focus .train14-plan-compact{display:none}
 @media(max-width:360px){.train14-root .train14-cue-large{font-size:33px}.train14-root .train14-cue-large svg{width:43px;height:43px}.train14-root .train14-two select{font-size:12px;padding:9px 3px}}
 @media(prefers-reduced-motion:reduce){.train14-root .train14-ball{animation:none}}
 
@@ -435,20 +454,56 @@ function statsPage(){
  return nav('数据统计','单次查看 · 多场汇总 · 训练对比')+menu+body+hint;
 }
 
-/* v14 新增模块：手机架设在支架上、无需接触屏幕的连续读防守训练。 */
-const train14={view:'list',mode:'foot',period:5000,hideArrow:false,large:false,running:false,round:0,left:0,right:0,started:0,cycle:-1,lastDir:'',sameDirection:0,scene:null,phase:'idle'};
+/* v15 每日训练计划：每日目标 1 次，记录本机训练历史。60% 的情景要求向右突破。 */
+const TRAIN_HISTORY_KEY='hooplog_training_sessions_v15';
+const train14={view:'list',mode:'foot',period:7000,hideArrow:false,large:false,running:false,round:0,left:0,right:0,started:0,startedAt:0,cycle:-1,lastDir:'',sameDirection:0,scene:null,phase:'idle'};
 let train14Timer=null;
+function train14DateKey(ms){const d=new Date(ms);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function train14History(){
+ try{const raw=JSON.parse(localStorage.getItem(TRAIN_HISTORY_KEY)||'[]');return Array.isArray(raw)?raw.filter(r=>r&&typeof r.date==='string'&&Number.isFinite(r.rounds)).slice(-365):[]}catch(e){return []}
+}
+function train14HistorySave(list){
+ try{localStorage.setItem(TRAIN_HISTORY_KEY,JSON.stringify(list.slice(-365)));return true}
+ catch(e){console.warn('训练记录保存失败',e);return false}
+}
+function train14PlanCard(inPractice=false){
+ const history=train14History(),today=train14DateKey(Date.now()),todays=history.filter(r=>r.date===today),count=todays.length;
+ const last=history[history.length-1];
+ const lastText=last?`${last.date.slice(5)} ${last.time||''} · ${last.rounds} 回合 · 左${last.left} / 右${last.right}`:'还没有训练记录';
+ return `<div class="train14-plan${inPractice?' train14-plan-compact':''}">
+  <div class="train14-plan-top"><strong>每日训练计划</strong><span class="train14-plan-pill ${count?'done':''}">${count?'今日已完成':'今日待完成'}</span></div>
+  <div class="train14-plan-count"><b>${count}</b><span> / 1 次</span><small>每天至少训练 1 次 · 可以重复练习</small></div>
+  <div class="train14-plan-last">上一次：${esc(lastText)}</div>
+ </div>`;
+}
+function train14HistoryCard(){
+ const history=train14History().slice(-7).reverse();
+ return `<div class="train14-card train14-history-card"><div class="train14-history-head"><strong>最近训练记录</strong><span>保存在本机</span></div>${history.length?history.map(r=>`<div class="train14-history-row"><span>${esc(r.date.slice(5))} <small>${esc(r.time||'')}</small></span><span><strong>${r.rounds} 回合</strong> · 左 ${r.left} / 右 ${r.right}</span></div>`).join(''):'<p class="train14-muted">完成一次训练并点击停止后，这里就会出现记录。</p>'}</div>`;
+}
+function train14LogSession(){
+ if(!train14.round)return;
+ const began=train14.startedAt||Date.now(),d=new Date(began);
+ const entry={date:train14DateKey(began),time:`${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`,
+  end:Date.now(),mode:train14.mode,period:train14.period,rounds:train14.round,left:train14.left,right:train14.right,
+  seconds:Math.max(0,Math.round((performance.now()-train14.started-2100)/1000))};
+ const h=train14History();h.push(entry);
+ if(!train14HistorySave(h)){const el=document.getElementById('train14-note');if(el)el.textContent='训练记录无法保存，请检查浏览器的本地存储设置'}
+}
+
 function train14Page(){
  if(train14.view!=='practice')return `<div class="train14-root">${nav('训练中心','看懂防守，再决定身体往哪边启动。')}
+  ${train14PlanCard()}
   <div class="train14-card" style="background:#eff5ff;border-color:#d8e7ff"><div style="font-size:17px;font-weight:850;margin-bottom:6px">今天的训练目标</div><div class="train14-muted">纠正接球后习惯性往左突破的问题。把手机架起来，持续运球，观察防守人的变化后立即向合适方向启动。</div></div>
   <button class="train14-course active" type="button" data-train14-open="1"><span class="train14-course-icon">↗</span><span class="train14-course-text"><strong>读防守 · 启动反应</strong><small>前脚变化 · 协防空位 · 左右反应</small></span><span style="color:#286ed2;font-size:24px">›</span></button>
   <div class="train14-course dim"><span class="train14-course-icon">⇄</span><span class="train14-course-text"><strong>变向衔接</strong><small>后续训练项目，尚未开放</small></span></div>
   <div class="train14-course dim"><span class="train14-course-icon">➜</span><span class="train14-course-text"><strong>两拍突破终结</strong><small>后续训练项目，尚未开放</small></span></div>
+  ${train14HistoryCard()}
  </div>`;
  return `<div class="train14-root">
  <div class="train14-top"><button class="train14-back" type="button" data-train14-back="1">‹ 训练目录</button><strong>读防守 · 启动反应</strong><span class="train14-status${train14.running?' live':''}" id="train14-status">${train14.running?'训练中':'尚未开始'}</span></div>
  <div class="train14-controls"><div class="train14-two"><div><label for="train14-mode">训练模式</label><select id="train14-mode" ${train14.running?'disabled':''}><option value="direct" ${train14.mode==='direct'?'selected':''}>① 左右方向反应</option><option value="foot" ${train14.mode==='foot'?'selected':''}>② 读防守前脚</option><option value="help" ${train14.mode==='help'?'selected':''}>③ 前脚 + 内线协防</option></select></div>
- <div><label for="train14-speed">每隔多久变换</label><select id="train14-speed" ${train14.running?'disabled':''}><option value="7000" ${train14.period===7000?'selected':''}>7 秒 · 初学</option><option value="5000" ${train14.period===5000?'selected':''}>5 秒 · 标准</option><option value="3500" ${train14.period===3500?'selected':''}>3.5 秒 · 快速</option></select></div></div>
+ <div><label for="train14-speed">每隔多久变换</label><select id="train14-speed" ${train14.running?'disabled':''}><option value="6000" ${train14.period===6000?'selected':''}>6 秒</option><option value="7000" ${train14.period===7000?'selected':''}>7 秒</option><option value="8000" ${train14.period===8000?'selected':''}>8 秒</option><option value="9000" ${train14.period===9000?'selected':''}>9 秒</option></select></div></div>
+ <div class="train14-probability">出题方向：<b>向右 60%</b> · 向左 40%</div>
  <label class="train14-check"><input type="checkbox" id="train14-hide" ${train14.hideArrow?'checked':''} ${train14.running?'disabled':''}>进阶挑战：先不显示方向箭头，只观察防守动作</label></div>
  <div class="train14-actions"><button class="train14-btn ${train14.running?'stop':'primary'}" type="button" data-train14-play="1">${train14.running?'■ 停止训练':'▶ 开始连续训练'}</button><button class="train14-btn" type="button" data-train14-focus="1">${train14.large?'显示设置':'大画面'}</button></div>
  <div class="train14-arena"><div class="train14-arena-top"><b>动态防守画面</b><span class="train14-status" id="train14-round-label">观察中</span></div>
@@ -470,7 +525,8 @@ function train14Page(){
  <div class="train14-cue" aria-live="off"><div class="train14-cue-small" id="train14-mini">准备好后点击开始</div><div class="train14-cue-large" id="train14-big">持续运球</div><div class="train14-cue-note" id="train14-note">无需点击左右，直接用身体作出反应</div></div>
  <div class="train14-progress"><div id="train14-bar"></div></div></div>
  <div class="train14-stats"><div class="train14-stat"><strong id="train14-round">${train14.round}</strong><small>变化回合</small></div><div class="train14-stat"><strong id="train14-left-count">${train14.left}</strong><small>提示向左</small></div><div class="train14-stat"><strong id="train14-right-count">${train14.right}</strong><small>提示向右</small></div></div>
- <p class="train14-tip">建议先练「② 读防守前脚」：防守人脚步突然变化，就立刻攻击前脚侧，做真实的一步启动，再回到中间持续运球。熟悉后勾选隐藏方向箭头，最后加入协防。请把支架放在不会被撞到的位置，并留出左右移动空间。回合统计是屏幕提示次数，不会通过摄像头检测你是否真的完成动作。</p>
+ ${train14PlanCard(true)}
+ <p class="train14-tip">建议先练「② 读防守前脚」：防守人脚步突然变化，就立刻攻击前脚侧，做真实的一步启动，再回到中间持续运球。熟悉后勾选隐藏方向箭头，最后加入协防。请把支架放在不会被撞到的位置，并留出左右移动空间。每日计划按实际停止并保存的训练次数计算。回合统计是屏幕提示次数，不会通过摄像头检测你是否真的完成动作。</p>
  </div>`;
 }
 function train14Query(id){return document.getElementById(id)}
@@ -516,17 +572,15 @@ function train14SetScene(reveal){
  train14Text('train14-note',train14.mode==='help'?'内线被封的一侧，优先绕开':'看前脚，实际完成一次突破起步');
 }
 function train14Choose(){
- let candidate,tries=0;
- do{
-  const lead=Math.random()<.5?'left':'right';
-  const helps=['left','right','none','none'];
-  const help=train14.mode==='help'?helps[Math.floor(Math.random()*helps.length)]:'none';
-  const target=train14.mode==='direct'?(Math.random()<.5?'left':'right'):(help==='none'?lead:help==='left'?'right':'left');
-  candidate={lead,help,target};tries++;
- }while(tries<16&&candidate.target===train14.lastDir&&train14.sameDirection>=1);
- train14.sameDirection=candidate.target===train14.lastDir?train14.sameDirection+1:0;
- train14.lastDir=candidate.target;
- return candidate;
+ // 每回合独立随机：目标方向向右 60%，向左 40%；允许连续同向，不人为削减右侧概率。
+ const target=Math.random()<0.6?'right':'left';
+ let lead=target,help='none';
+ if(train14.mode==='help'&&Math.random()<.5){
+  // 协防封住目标的另一侧；约一半题目要求读协防，另一半只判断前脚。
+  help=target==='right'?'left':'right';
+  lead=Math.random()<.5?target:(target==='right'?'left':'right');
+ }
+ return {lead,help,target};
 }
 function train14Cue(){
  train14.round++;
@@ -560,12 +614,13 @@ function train14Start(){
  if(train14.running)return;
  train14.running=true;train14.round=0;train14.left=0;train14.right=0;
  train14.cycle=-1;train14.phase='idle';train14.scene=null;train14.lastDir='';train14.sameDirection=0;
- train14.started=performance.now();
+ train14.started=performance.now();train14.startedAt=Date.now();
  render();train14SetNeutral();
  clearInterval(train14Timer);train14Timer=setInterval(()=>train14Tick(),70);train14Tick();
 }
 function train14Stop(redraw=true){
  if(train14Timer){clearInterval(train14Timer);train14Timer=null}
+ if(train14.running)train14LogSession();
  train14.running=false;train14.phase='idle';train14.scene=null;
  if(redraw&&state.tab==='training'){
   render();train14Text('train14-status','已暂停');train14Text('train14-mini','训练已停止');
