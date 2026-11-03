@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101719">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="manifest" href="./manifest.webmanifest"><title>HOOPLOG · 篮球数据和离线视频</title>
+<link rel="manifest" href="./manifest.webmanifest"><title>HOOPLOG v14 · 篮球统计、离线视频与反应训练</title>
 <style>
 :root{color-scheme:dark;--bg:#101719;--panel:#1a2427;--panel2:#243033;--line:#344447;--muted:#96a9a8;--green:#d6f58a;--red:#ffad9e;--text:#edf4ef;--blue:#a6d0ff}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC",sans-serif;color:var(--text);padding-bottom:calc(95px + env(safe-area-inset-bottom))}button,input,select{font:inherit}button{cursor:pointer;touch-action:manipulation}button:disabled{opacity:.38;cursor:not-allowed}a{color:var(--green)}main{max-width:760px;margin:auto;padding:16px 16px 22px}header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px}.brand{font-size:18px;letter-spacing:1.5px;font-weight:900}.brand span{display:inline-block;background:var(--green);color:#15211c;padding:7px 9px;border-radius:10px;margin-right:7px}.subtitle,.muted{color:var(--muted);font-size:12px;line-height:1.65}.title{font-size:23px;font-weight:800;letter-spacing:-.6px;margin:9px 0 6px}h2{font-size:16px;margin:22px 0 10px}h3{margin:0 0 7px;font-size:14px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:15px;margin:11px 0}.hero{background:linear-gradient(125deg,#2f442e,#1b2a26 80%);border:1px solid #53704b;border-radius:19px;padding:18px;margin:14px 0}.score{font-size:65px;line-height:1.1;font-weight:900;letter-spacing:-2px;color:var(--green)}.score small{font-size:12px;letter-spacing:0}.row{display:flex;align-items:center;justify-content:space-between;gap:9px}.wrap{flex-wrap:wrap}.stack{display:grid;gap:10px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.stat{border-radius:13px;background:var(--panel2);padding:11px}.stat b{display:block;font-size:23px}.stat small{color:var(--muted);font-size:11px}.pill{border-radius:20px;padding:5px 9px;background:#33413c;color:#d0e8d2;font-size:11px;white-space:nowrap}.pill.ok{background:#24472e;color:#bbedae}.pill.warn{background:#453e25;color:#fff2ae}.pill.err{background:#492e30;color:#ffd1c9}.btn{border:0;border-radius:12px;padding:12px 14px;font-weight:750;background:var(--green);color:#17241c;font-size:13px;min-height:43px}.btn.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}.btn.danger{background:#4e2a2c;color:#ffd5cd}.btn.tiny{padding:8px 10px;min-height:33px;font-size:11px}.btn:focus-visible,input:focus-visible{outline:2px solid var(--green);outline-offset:2px}.input{background:#131d20;color:var(--text);border:1px solid #526363;border-radius:11px;padding:12px;width:100%;font-size:14px;min-width:0}.input::placeholder{color:#758c8c}.field{display:grid;gap:7px}.field label{font-size:12px;color:#b5c6c4}.subnote{font-size:11px;color:#a8bdba;line-height:1.7;margin-top:8px}.folder{display:flex;justify-content:space-between;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:13px;text-align:left;width:100%;color:var(--text);margin:8px 0}.folder.selected{border-color:#acd767;background:#223327}.folder-info{min-width:0;flex:1}.folder-name{font-size:14px;font-weight:750;overflow-wrap:anywhere}.meter{height:8px;border-radius:9px;background:#374649;overflow:hidden}.meter>div{height:100%;background:var(--green);border-radius:9px;transition:width .2s}.clip{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;text-align:left;width:100%;color:var(--text);margin:8px 0}.clip .ico{background:#334640;padding:12px;border-radius:12px;color:var(--green)}.clip .info{min-width:0;flex:1}.clip .info b{font-size:13px;display:block;overflow-wrap:anywhere}.clip .info small{color:var(--muted);font-size:11px;display:block;margin-top:3px;overflow-wrap:anywhere}.dot{width:8px;height:8px;background:#a0a0a0;border-radius:100%;flex-shrink:0}.dot.ok{background:#b8ed87}.tabs{position:fixed;bottom:0;left:0;right:0;margin:auto;max-width:760px;background:#151f22ed;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:10px 10px calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(4,1fr);gap:3px;z-index:10}.tab{background:transparent;border:0;color:#91a6a5;font-size:12px;padding:8px 3px}.tab[aria-selected=true]{color:var(--green);font-weight:800}.tab i{display:block;font-style:normal;font-size:20px;margin-bottom:3px}.alert{border-radius:12px;padding:11px 12px;border:1px solid #5d6145;background:#302f24;color:#e7e1b0;font-size:12px;line-height:1.6;margin:11px 0}.alert.danger{border-color:#684449;background:#3c292d;color:#ffd3c9}.alert.good{border-color:#385c45;background:#263d2e;color:#c4e9c5}.empty{text-align:center;padding:25px 12px;color:var(--muted);font-size:13px;line-height:1.7}.progress{font-size:12px;color:#c0d4bd;min-height:18px;line-height:1.6}.divider{border:0;border-top:1px solid var(--line);margin:15px 0}.shot{margin:12px 0}.shot b{font-size:13px}.shot small{font-size:11px;color:var(--muted)}.filters{display:flex;gap:8px;overflow-x:auto;padding:5px 0 12px}.filter{white-space:nowrap;background:var(--panel2);color:#d7e4e0;border:1px solid var(--line);padding:8px 12px;border-radius:20px;font-size:12px}.filter.active{background:var(--green);color:#19301b}.player{position:fixed;inset:0;background:#050b0af5;z-index:40;padding:calc(15px + env(safe-area-inset-top)) 15px calc(20px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:13px;overflow-y:auto}.player video{width:100%;max-height:56vh;background:black;border-radius:15px}.player h2{margin:0}.player .notes{white-space:pre-wrap;overflow-wrap:anywhere;background:#1e2929;border-radius:12px;padding:12px;color:#dce5df;font-size:13px}input[type=checkbox]{accent-color:#a9d86a;transform:scale(1.2);margin-right:9px}label.check{display:flex;gap:7px;align-items:start;font-size:12px;line-height:1.5;color:#dce6dd}.hide{display:none!important}.tinyrow{font-size:12px;color:#b9cfca;line-height:1.65}.chip{display:inline-block;border:1px solid #445455;border-radius:9px;padding:5px 8px;color:#bfd2cb;font-size:11px}.warning-text{color:#ffc1aa}#toast{position:fixed;bottom:calc(90px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);border-radius:12px;background:#e1f8ac;color:#1e301e;padding:11px 15px;z-index:50;font-size:13px;box-shadow:0 4px 25px #0006;max-width:92vw;min-width:180px;text-align:center;display:none}
@@ -147,6 +147,82 @@ body.stats-v13-focus .v11-footer-hint{margin:9px 3px 5px}
 .v13-footnote{font-size:11px;line-height:1.5;color:#8290a1;margin:3px 3px 0}
 @media(max-width:370px){.v13-value .v13-date{font-size:10px}.v13-arrow-number{font-size:10px}.v13-action,.v13-score{padding-left:9px;padding-right:9px}.v13-action .v13-figure{font-size:19px}}
 
+
+/* v14 读防守·左右突破反应：所有样式限定在训练页面内，其他页面保持 v13 原状。 */
+body.training-v14-theme{color-scheme:light;--bg:#f6f8fc;--panel:#fff;--panel2:#eff4fb;--line:#e0e8f2;--muted:#71839b;--text:#182b44;--green:#286ed2;background:#f6f8fc}
+body.training-v14-theme .tabs{background:#ffffffed;border-color:#e0e8f2}
+body.training-v14-theme .tab{color:#71839b}
+body.training-v14-theme .tab[aria-selected=true]{color:#286ed2}
+body.training-v14-theme .brand span{background:#286ed2;color:white}
+body.training-v14-theme .subtitle{color:#75869b}
+.tabs{grid-template-columns:repeat(5,minmax(0,1fr));gap:0}
+.tabs .tab{font-size:11px;padding:8px 1px}
+.train14-root{color:#172b47;font-size:14px;line-height:1.45}
+.train14-root button,.train14-root select{font:inherit}
+.train14-root button:focus-visible,.train14-root select:focus-visible{outline:2px solid #286ed2;outline-offset:2px}
+.train14-root .train14-card{background:#fff;border:1px solid #e0e8f2;border-radius:17px;padding:14px;margin:11px 0}
+.train14-root .train14-muted{font-size:12px;color:#71849c;line-height:1.65}
+.train14-root .train14-course{display:flex;width:100%;gap:12px;align-items:center;text-align:left;background:#fff;color:#172b47;border:1px solid #e0e8f2;border-radius:15px;padding:16px 13px;margin:10px 0;min-height:85px}
+.train14-root .train14-course.active{border-color:#a1c1f3;box-shadow:0 2px 12px #266dcc16}
+.train14-root .train14-course.dim{opacity:.55;cursor:default}
+.train14-root .train14-course-icon{flex:0 0 48px;height:48px;display:grid;place-items:center;background:#eaf2ff;color:#2d70cf;font-size:27px;border-radius:13px}
+.train14-root .train14-course-text{flex:1;min-width:0}
+.train14-root .train14-course-text strong{display:block;font-size:16px;line-height:1.35}
+.train14-root .train14-course-text small{display:block;color:#798aa0;font-size:12px;margin-top:5px}
+.train14-root .train14-controls{background:white;border:1px solid #e0e8f2;padding:12px;border-radius:14px;margin:10px 0}
+.train14-root .train14-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:9px}
+.train14-root .train14-two label{display:block;color:#687f9c;font-size:12px;font-weight:650;margin-bottom:6px}
+.train14-root .train14-two select{display:block;width:100%;min-width:0;background:white;color:#263b57;border:1px solid #d7e3f0;border-radius:10px;padding:10px 7px;font-size:13px;font-weight:750}
+.train14-root .train14-check{display:flex;align-items:center;gap:9px;margin:12px 0 1px;font-size:12px;color:#526881;line-height:1.5}
+.train14-root .train14-check input{accent-color:#286ed2;transform:none;width:17px;height:17px;margin:0;flex:0 0 17px}
+.train14-root .train14-btn{background:#fff;border:1px solid #d5e0ef;color:#385271;border-radius:12px;padding:12px 14px;font-weight:750;min-height:43px}
+.train14-root .train14-btn.primary{background:#286ed2;color:white;border-color:#286ed2;font-size:16px}
+.train14-root .train14-btn.stop{background:#cf4253;color:white;border-color:#cf4253}
+.train14-root .train14-btn:disabled{opacity:.65;cursor:not-allowed}
+.train14-root .train14-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:2px 0 9px}
+.train14-root .train14-top strong{font-size:19px}
+.train14-root .train14-back{border:0;background:transparent;color:#266dca;font-weight:750;font-size:12px;padding:7px 0}
+.train14-root .train14-arena{border:1px solid #dce6f1;background:white;border-radius:17px;overflow:hidden;margin-top:10px}
+.train14-root .train14-arena-top{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:10px 12px}
+.train14-root .train14-arena-top b{font-size:14px}
+.train14-root .train14-status{border-radius:20px;padding:5px 9px;background:#edf3fb;color:#56718f;font-size:11px;font-weight:800;white-space:nowrap}
+.train14-root .train14-status.live{background:#e4f8ee;color:#168354}
+.train14-root .train14-court{position:relative;background:linear-gradient(180deg,#faefd9,#ead8b7);overflow:hidden}
+.train14-root .train14-court svg{display:block;width:100%;height:auto}
+.train14-root .train14-court-tag{position:absolute;top:9px;left:10px;border-radius:8px;background:#ffffffd9;color:#65758b;font-weight:750;font-size:11px;padding:5px 8px}
+.train14-root #train14-body{transition:transform .24s ease;transform-origin:180px 162px}
+.train14-root #train14-foot-l,.train14-root #train14-foot-r,.train14-root #train14-leg-l,.train14-root #train14-leg-r{transition:all .26s ease}
+.train14-root #train14-help-l,.train14-root #train14-help-r{transition:opacity .26s ease,transform .26s ease}
+.train14-root #train14-person{transition:transform .26s ease}
+.train14-root .train14-ball{animation:train14-bounce .56s ease-in-out infinite alternate;transform-origin:center}
+@keyframes train14-bounce{from{transform:translateY(-8px)}to{transform:translateY(9px)}}
+.train14-root .train14-cue{background:#f9fbff;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;min-height:135px;text-align:center;padding:12px 8px}
+.train14-root .train14-cue-small{font-size:12px;color:#71849c;font-weight:750}
+.train14-root .train14-cue-large{display:flex;align-items:center;justify-content:center;gap:7px;font-weight:950;font-size:clamp(32px,10vw,49px);letter-spacing:-1px;line-height:1.15;color:#2a72cc;white-space:nowrap}
+.train14-root .train14-cue-large svg{width:58px;height:58px;flex-shrink:0}
+.train14-root .train14-cue-note{font-size:12px;color:#62758f;font-weight:650;min-height:17px}
+.train14-root .train14-progress{height:5px;background:#e7edf5}
+.train14-root .train14-progress>div{height:100%;width:0;background:#3079dc}
+.train14-root .train14-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.train14-root .train14-stat{background:white;border:1px solid #e1e8f2;border-radius:11px;padding:11px 4px;text-align:center}
+.train14-root .train14-stat strong{display:block;font-size:21px;font-variant-numeric:tabular-nums}
+.train14-root .train14-stat small{font-size:11px;color:#75869d}
+.train14-root .train14-actions{display:grid;grid-template-columns:2fr 1fr;gap:9px;margin-top:10px}
+.train14-root .train14-tip{font-size:12px;line-height:1.7;color:#677c92;margin:12px 2px 14px}
+body.training-v14-focus{padding-bottom:0;background:#f6f8fc}
+body.training-v14-focus main{padding:0;max-width:760px}
+body.training-v14-focus main>header,body.training-v14-focus nav.tabs{display:none}
+body.training-v14-focus .train14-root{padding:7px 10px max(9px,env(safe-area-inset-bottom))}
+body.training-v14-focus .train14-top{margin:0 0 4px}
+body.training-v14-focus .train14-controls{display:none}
+body.training-v14-focus .train14-arena{margin-top:3px}
+body.training-v14-focus .train14-actions{margin-top:4px;margin-bottom:8px}
+body.training-v14-focus .train14-cue{min-height:156px}
+body.training-v14-focus .train14-cue-large{font-size:clamp(39px,11vw,57px)}
+body.training-v14-focus .train14-tip{display:none}
+@media(max-width:360px){.train14-root .train14-cue-large{font-size:33px}.train14-root .train14-cue-large svg{width:43px;height:43px}.train14-root .train14-two select{font-size:12px;padding:9px 3px}}
+@media(prefers-reduced-motion:reduce){.train14-root .train14-ball{animation:none}}
+
 </style>
 </head>
 <body>
@@ -154,7 +230,7 @@ body.stats-v13-focus .v11-footer-hint{margin:9px 3px 5px}
 <header><div><div class="brand"><span>↗</span>HOOPLOG</div><div class="subtitle">篮球数据 · Google Drive · 本机离线片段</div></div></header>
 <div id="page"></div>
 </main>
-<nav class="tabs" aria-label="主导航"><button class="tab" data-tab="folders" aria-selected="true"><i>▦</i>文件夹</button><button class="tab" data-tab="stats" aria-selected="false"><i>◴</i>数据统计</button><button class="tab" data-tab="clips" aria-selected="false"><i>▷</i>视频片段</button><button class="tab" data-tab="settings" aria-selected="false"><i>⚙</i>设置</button></nav>
+<nav class="tabs" aria-label="主导航"><button class="tab" data-tab="folders" aria-selected="true"><i>▦</i>文件夹</button><button class="tab" data-tab="stats" aria-selected="false"><i>◴</i>数据统计</button><button class="tab" data-tab="training" aria-selected="false"><i>⛹</i>训练</button><button class="tab" data-tab="clips" aria-selected="false"><i>▷</i>视频片段</button><button class="tab" data-tab="settings" aria-selected="false"><i>⚙</i>设置</button></nav>
 <div id="videoOverlay" class="player hide" role="dialog" aria-modal="true" aria-label="离线视频播放器"><div class="row"><h2 id="videoTitle">离线播放</h2><button class="btn secondary" id="closeVideo">关闭 ✕</button></div><video id="videoPlayer" controls playsinline preload="metadata" disablepictureinpicture></video><div id="videoMeta" class="tinyrow"></div><div id="videoNote" class="notes"></div><div class="alert good">本播放器只使用本机已缓存视频，不会从 Google Drive 联网播放。</div></div>
 <div id="toast" role="status"></div>
 <script>
@@ -358,13 +434,158 @@ function statsPage(){
  }
  return nav('数据统计','单次查看 · 多场汇总 · 训练对比')+menu+body+hint;
 }
+
+/* v14 新增模块：手机架设在支架上、无需接触屏幕的连续读防守训练。 */
+const train14={view:'list',mode:'foot',period:5000,hideArrow:false,large:false,running:false,round:0,left:0,right:0,started:0,cycle:-1,lastDir:'',sameDirection:0,scene:null,phase:'idle'};
+let train14Timer=null;
+function train14Page(){
+ if(train14.view!=='practice')return `<div class="train14-root">${nav('训练中心','看懂防守，再决定身体往哪边启动。')}
+  <div class="train14-card" style="background:#eff5ff;border-color:#d8e7ff"><div style="font-size:17px;font-weight:850;margin-bottom:6px">今天的训练目标</div><div class="train14-muted">纠正接球后习惯性往左突破的问题。把手机架起来，持续运球，观察防守人的变化后立即向合适方向启动。</div></div>
+  <button class="train14-course active" type="button" data-train14-open="1"><span class="train14-course-icon">↗</span><span class="train14-course-text"><strong>读防守 · 启动反应</strong><small>前脚变化 · 协防空位 · 左右反应</small></span><span style="color:#286ed2;font-size:24px">›</span></button>
+  <div class="train14-course dim"><span class="train14-course-icon">⇄</span><span class="train14-course-text"><strong>变向衔接</strong><small>后续训练项目，尚未开放</small></span></div>
+  <div class="train14-course dim"><span class="train14-course-icon">➜</span><span class="train14-course-text"><strong>两拍突破终结</strong><small>后续训练项目，尚未开放</small></span></div>
+ </div>`;
+ return `<div class="train14-root">
+ <div class="train14-top"><button class="train14-back" type="button" data-train14-back="1">‹ 训练目录</button><strong>读防守 · 启动反应</strong><span class="train14-status${train14.running?' live':''}" id="train14-status">${train14.running?'训练中':'尚未开始'}</span></div>
+ <div class="train14-controls"><div class="train14-two"><div><label for="train14-mode">训练模式</label><select id="train14-mode" ${train14.running?'disabled':''}><option value="direct" ${train14.mode==='direct'?'selected':''}>① 左右方向反应</option><option value="foot" ${train14.mode==='foot'?'selected':''}>② 读防守前脚</option><option value="help" ${train14.mode==='help'?'selected':''}>③ 前脚 + 内线协防</option></select></div>
+ <div><label for="train14-speed">每隔多久变换</label><select id="train14-speed" ${train14.running?'disabled':''}><option value="7000" ${train14.period===7000?'selected':''}>7 秒 · 初学</option><option value="5000" ${train14.period===5000?'selected':''}>5 秒 · 标准</option><option value="3500" ${train14.period===3500?'selected':''}>3.5 秒 · 快速</option></select></div></div>
+ <label class="train14-check"><input type="checkbox" id="train14-hide" ${train14.hideArrow?'checked':''} ${train14.running?'disabled':''}>进阶挑战：先不显示方向箭头，只观察防守动作</label></div>
+ <div class="train14-actions"><button class="train14-btn ${train14.running?'stop':'primary'}" type="button" data-train14-play="1">${train14.running?'■ 停止训练':'▶ 开始连续训练'}</button><button class="train14-btn" type="button" data-train14-focus="1">${train14.large?'显示设置':'大画面'}</button></div>
+ <div class="train14-arena"><div class="train14-arena-top"><b>动态防守画面</b><span class="train14-status" id="train14-round-label">观察中</span></div>
+ <div class="train14-court"><div class="train14-court-tag">篮筐在前方 ↑</div>
+ <svg viewBox="0 0 360 345" role="img" aria-label="篮球半场俯视图：篮筐在上，持球者在下，防守人会自动变换前脚，协防会自动变化">
+ <g fill="none" stroke="#fffaf1" stroke-width="2.5"><rect x="12" y="14" width="336" height="325" rx="5"/><path d="M113 16 V115 H247 V16"/><path d="M120 115 A60 60 0 0 0 240 115"/><path d="M30 275 Q180 60 330 275" opacity=".48"/></g>
+ <rect x="159" y="18" width="42" height="5" rx="2" fill="#737c88"/><circle cx="180" cy="37" r="10" fill="none" stroke="#bc613c" stroke-width="3.5"/><text x="180" y="65" text-anchor="middle" fill="#856c4a" font-size="12">篮筐</text>
+ <g id="train14-help-l" opacity="0" transform="translate(-35 0)"><circle cx="77" cy="131" r="26" fill="#dc606a" stroke="white" stroke-width="3"/><text x="77" y="128" text-anchor="middle" fill="white" font-weight="800" font-size="12">协防</text><text x="77" y="144" text-anchor="middle" fill="white" font-size="11">封左</text></g>
+ <g id="train14-help-r" opacity="0" transform="translate(35 0)"><circle cx="283" cy="131" r="26" fill="#dc606a" stroke="white" stroke-width="3"/><text x="283" y="128" text-anchor="middle" fill="white" font-weight="800" font-size="12">协防</text><text x="283" y="144" text-anchor="middle" fill="white" font-size="11">封右</text></g>
+ <path id="train14-lane-l" d="M155 273 Q90 250 82 181" stroke="#15976e" stroke-width="11" stroke-linecap="round" fill="none" stroke-dasharray="6 12" opacity="0"/>
+ <path id="train14-lane-r" d="M204 273 Q271 250 280 181" stroke="#15976e" stroke-width="11" stroke-linecap="round" fill="none" stroke-dasharray="6 12" opacity="0"/>
+ <g><line id="train14-leg-l" x1="166" y1="175" x2="155" y2="207" stroke="#416fa8" stroke-width="11" stroke-linecap="round"/>
+ <line id="train14-leg-r" x1="194" y1="175" x2="205" y2="207" stroke="#416fa8" stroke-width="11" stroke-linecap="round"/>
+ <ellipse id="train14-foot-l" cx="155" cy="207" rx="11" ry="17" fill="#204f92" stroke="white" stroke-width="2"/><ellipse id="train14-foot-r" cx="205" cy="207" rx="11" ry="17" fill="#204f92" stroke="white" stroke-width="2"/>
+ <g id="train14-body"><ellipse cx="180" cy="151" rx="26" ry="29" fill="#3875bd" stroke="white" stroke-width="3"/><circle cx="180" cy="145" r="11" fill="#dcecff"/><path d="M160 147 L144 166 M200 147 L216 166" stroke="#3875bd" stroke-width="10" stroke-linecap="round"/></g></g>
+ <text x="180" y="112" text-anchor="middle" font-size="13" font-weight="750" fill="#355d94">防守人</text>
+ <g id="train14-person"><circle cx="180" cy="294" r="25" fill="#26a680" stroke="white" stroke-width="3"/><circle cx="180" cy="288" r="10" fill="#dcfff4"/><g class="train14-ball"><circle cx="209" cy="297" r="10.5" fill="#dd883e" stroke="#9b5623" stroke-width="1.6"/><path d="M199 297 H219 M209 287 V307 M202 289 Q216 295 215 304" fill="none" stroke="#9b5623" stroke-width="1.1"/></g></g>
+ <text x="180" y="333" text-anchor="middle" font-weight="800" font-size="13" fill="#39755e">你 · 持续运球</text></svg></div>
+ <div class="train14-cue" aria-live="off"><div class="train14-cue-small" id="train14-mini">准备好后点击开始</div><div class="train14-cue-large" id="train14-big">持续运球</div><div class="train14-cue-note" id="train14-note">无需点击左右，直接用身体作出反应</div></div>
+ <div class="train14-progress"><div id="train14-bar"></div></div></div>
+ <div class="train14-stats"><div class="train14-stat"><strong id="train14-round">${train14.round}</strong><small>变化回合</small></div><div class="train14-stat"><strong id="train14-left-count">${train14.left}</strong><small>提示向左</small></div><div class="train14-stat"><strong id="train14-right-count">${train14.right}</strong><small>提示向右</small></div></div>
+ <p class="train14-tip">建议先练「② 读防守前脚」：防守人脚步突然变化，就立刻攻击前脚侧，做真实的一步启动，再回到中间持续运球。熟悉后勾选隐藏方向箭头，最后加入协防。请把支架放在不会被撞到的位置，并留出左右移动空间。回合统计是屏幕提示次数，不会通过摄像头检测你是否真的完成动作。</p>
+ </div>`;
+}
+function train14Query(id){return document.getElementById(id)}
+function train14Text(id,value){const el=train14Query(id);if(el)el.textContent=value}
+function train14Attr(id,key,value){const el=train14Query(id);if(el)el.setAttribute(key,value)}
+function train14Arrow(dir){
+ const el=train14Query('train14-big');if(!el)return;
+ if(!dir){el.style.color='#52708e';el.textContent='读防守！';return}
+ el.style.color=dir==='left'?'#246bc7':'#148e68';
+ const arrow=dir==='left'?'<svg viewBox="0 0 70 70" fill="none" aria-hidden="true"><path d="M61 37H10M10 37l24-23M10 37l24 23" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>':'<svg viewBox="0 0 70 70" fill="none" aria-hidden="true"><path d="M9 37h51M60 37L36 14M60 37L36 60" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+ el.innerHTML=dir==='left'?arrow+'<span>向左突破</span>':'<span>向右突破</span>'+arrow;
+}
+function train14SetNeutral(){
+ train14.phase='neutral';
+ train14Attr('train14-foot-l','cy','207');train14Attr('train14-foot-r','cy','207');
+ train14Attr('train14-leg-l','y2','207');train14Attr('train14-leg-r','y2','207');
+ const body=train14Query('train14-body');if(body)body.style.transform='translateX(0)';
+ train14Attr('train14-help-l','opacity','0');train14Attr('train14-help-r','opacity','0');
+ train14Attr('train14-help-l','transform','translate(-35 0)');train14Attr('train14-help-r','transform','translate(35 0)');
+ train14Attr('train14-lane-l','opacity','0');train14Attr('train14-lane-r','opacity','0');
+ train14Text('train14-mini','继续原地运球 · 观察防守');
+ train14Text('train14-note','下一次站位变化即将出现');
+ const big=train14Query('train14-big');if(big){big.style.color='#52708e';big.textContent='准备观察'}
+}
+function train14SetScene(reveal){
+ const c=train14.scene;if(!c)return;
+ const leftY=train14.mode==='direct'?'207':c.lead==='left'?'228':'198',rightY=train14.mode==='direct'?'207':c.lead==='right'?'228':'198';
+ train14Attr('train14-foot-l','cy',leftY);train14Attr('train14-foot-r','cy',rightY);
+ train14Attr('train14-leg-l','y2',leftY);train14Attr('train14-leg-r','y2',rightY);
+ const body=train14Query('train14-body');if(body)body.style.transform=train14.mode==='direct'?'translateX(0)':`translateX(${c.lead==='left'?'-9px':'9px'})`;
+ for(const side of ['left','right']){
+  const short=side==='left'?'l':'r',show=train14.mode==='help'&&c.help===side;
+  train14Attr('train14-help-'+short,'opacity',show?'1':'0');
+  train14Attr('train14-help-'+short,'transform',show?'translate(0 0)':`translate(${side==='left'?-35:35} 0)`);
+ }
+ const visible=train14.mode==='direct'||!train14.hideArrow||reveal;
+ if(visible){
+  train14Arrow(c.target);
+  train14Attr('train14-lane-'+(c.target==='left'?'l':'r'),'opacity','0.8');
+  train14Attr('train14-lane-'+(c.target==='left'?'r':'l'),'opacity','0');
+ }else{train14Arrow(null);train14Attr('train14-lane-l','opacity','0');train14Attr('train14-lane-r','opacity','0')}
+ train14Text('train14-mini',train14.mode==='direct'?'看到方向立即移动':train14.mode==='foot'?'前脚突然变化！立即启动':'前脚 + 协防变化！立即判断');
+ train14Text('train14-note',train14.mode==='help'?'内线被封的一侧，优先绕开':'看前脚，实际完成一次突破起步');
+}
+function train14Choose(){
+ let candidate,tries=0;
+ do{
+  const lead=Math.random()<.5?'left':'right';
+  const helps=['left','right','none','none'];
+  const help=train14.mode==='help'?helps[Math.floor(Math.random()*helps.length)]:'none';
+  const target=train14.mode==='direct'?(Math.random()<.5?'left':'right'):(help==='none'?lead:help==='left'?'right':'left');
+  candidate={lead,help,target};tries++;
+ }while(tries<16&&candidate.target===train14.lastDir&&train14.sameDirection>=1);
+ train14.sameDirection=candidate.target===train14.lastDir?train14.sameDirection+1:0;
+ train14.lastDir=candidate.target;
+ return candidate;
+}
+function train14Cue(){
+ train14.round++;
+ train14.scene=train14Choose();train14.phase='cue';
+ if(train14.scene.target==='left')train14.left++;else train14.right++;
+ train14Text('train14-round',String(train14.round));
+ train14Text('train14-left-count',String(train14.left));train14Text('train14-right-count',String(train14.right));
+ train14Text('train14-round-label',`第 ${train14.round} 回合`);
+ train14Text('train14-status','训练中');
+ train14SetScene(false);
+}
+function train14Tick(force=false){
+ if(!train14.running||state.tab!=='training'||train14.view!=='practice')return;
+ const elapsed=performance.now()-train14.started;
+ if(elapsed<2100){
+  train14Text('train14-mini','准备站位 · 稳定运球');
+  train14Text('train14-note','倒数后开始自动变换');
+  const big=train14Query('train14-big');if(big){big.style.color='#52708e';big.textContent=String(Math.max(1,Math.ceil((2100-elapsed)/700)))}
+  train14Attr('train14-bar','style',`width:${(elapsed/2100*100).toFixed(2)}%`);
+  if(force)train14SetNeutral();return;
+ }
+ const e=elapsed-2100,idx=Math.floor(e/train14.period),pos=e%train14.period;
+ if(idx!==train14.cycle){train14.cycle=idx;train14Cue()}
+ const activeTime=train14.period-850;
+ if(pos>=activeTime){if(train14.phase!=='neutral'||force){train14SetNeutral();train14Text('train14-round-label','继续运球')}}
+ else if(force||train14.phase!=='cue'){train14.phase='cue';train14SetScene(pos>=activeTime-850)}
+ else if(train14.hideArrow&&train14.mode!=='direct'&&pos>=activeTime-850)train14SetScene(true);
+ train14Attr('train14-bar','style',`width:${(pos/train14.period*100).toFixed(2)}%`);
+}
+function train14Start(){
+ if(train14.running)return;
+ train14.running=true;train14.round=0;train14.left=0;train14.right=0;
+ train14.cycle=-1;train14.phase='idle';train14.scene=null;train14.lastDir='';train14.sameDirection=0;
+ train14.started=performance.now();
+ render();train14SetNeutral();
+ clearInterval(train14Timer);train14Timer=setInterval(()=>train14Tick(),70);train14Tick();
+}
+function train14Stop(redraw=true){
+ if(train14Timer){clearInterval(train14Timer);train14Timer=null}
+ train14.running=false;train14.phase='idle';train14.scene=null;
+ if(redraw&&state.tab==='training'){
+  render();train14Text('train14-status','已暂停');train14Text('train14-mini','训练已停止');
+  train14Text('train14-note','可调整模式或速度后重新开始');
+  const big=train14Query('train14-big');if(big){big.style.color='#52708e';big.textContent='完成'}
+ }
+}
+function train14OnMount(){
+ if(train14.view!=='practice')return;
+ train14SetNeutral();
+ if(train14.running){train14Tick(true)}
+}
+
 function videoRecords(folder,video){const key=normalizeName(video.name);return (folder?.records||[]).filter(r=>normalizeName(r.clip)===key)}
 function actionGroup(action){const a=String(action||'').trim();if(!a)return '未分类';if(/失误|无效运球|违例/.test(a))return '失误/其他';if(/突破/.test(a))return '突破类';if(/投篮|跳投|三分|中投|远投/.test(a))return '投篮类';if(/上篮|篮下|补篮|终结|扣篮/.test(a))return '篮下终结类';if(/传球|助攻/.test(a))return '传球类';if(/防守|抢断|盖帽|篮板/.test(a))return '防守/篮板类';return '其他动作'}
 function clipGroups(folder,video){const rows=videoRecords(folder,video);return rows.length?[...new Set(rows.map(r=>actionGroup(r.action)))]:['未分类']}
 function clipsPage(){let f=current();if(!f)return nav('视频片段','本机已缓存才允许播放')+'<div class="empty">先选择一个子文件夹</div>';let all=vfiles(f);const options=['全部','投篮类','突破类','篮下终结类','传球类','防守/篮板类','失误/其他','其他动作','未分类','已缓存','未缓存','命中','未中'];let rows=all.filter(x=>{let rr=videoRecords(f,x);return state.filter==='全部'||state.filter==='已缓存'&&x.cached||state.filter==='未缓存'&&!x.cached||state.filter==='命中'&&rr.some(r=>r.result==='成功')||state.filter==='未中'&&rr.some(r=>r.result==='失败')||clipGroups(f,x).includes(state.filter)});return nav('视频片段',esc(f.name)+' · 根据 Excel 动作自动分类 · 离线播放')+`<div class="filters">${options.map(x=>`<button class="filter ${state.filter===x?'active':''}" data-filter="${x}">${x}</button>`).join('')}</div><div class="tinyrow">${rows.length} 个视频 · 一个视频可以同时属于多个类别 · 未缓存不联网播放</div>${rows.map(v=>{let rr=videoRecords(f,v);let labels=rr.map(r=>[r.action||'未分类',r.result,r.note].filter(Boolean).join(' · '));return `<button class="clip" data-play="${esc(v.id)}"><span class="ico">▶</span><span class="info"><b>${esc(v.name)}</b><small>${esc(clipGroups(f,v).join(' / '))}</small><small>${esc(labels.join('；').slice(0,160)||'没有动作记录')}</small></span><span class="pill ${v.cached?'ok':'warn'}">${v.cached?'已离线':'未缓存'}</span></button>`}).join('')||'<div class="empty">没有符合条件的片段</div>'}`;}
 function settingsPage(){let id=localStorage.getItem('hooplog_client_id')||'',root=localStorage.getItem('hooplog_root_url')||'';return nav('网站设置','一次配置后，下次直接用你的 Google Drive')+`<div class="panel stack"><h3>Google Drive 授权</h3><div class="field"><label for="clientId">Google Cloud 网页 OAuth 客户端 ID（不是密钥）</label><input class="input" id="clientId" value="${esc(id)}" placeholder="xxxxxxxx.apps.googleusercontent.com" autocapitalize="off"></div><div class="row wrap"><button class="btn" id="saveClient">保存客户端 ID</button><button class="btn secondary" id="googleLogin">使用 Google 登录</button><button class="btn secondary" id="signout">退出本次登录</button></div><div class="tinyrow" id="authState">${state.token&&Date.now()<state.tokenExpiry?'● 已获取授权':'○ 尚未登录或授权已过期'}</div><div class="subnote">授权只在当前网页运行期间使用；不保存访问令牌。第一次使用需在 Google Cloud 启用 Drive API，并把 GitHub Pages 域名加入 OAuth 授权来源。</div></div><div class="panel stack"><h3>Google Drive · 篮球总文件夹</h3><div class="field"><label for="folderUrl">只需首次粘贴「篮球」文件夹链接</label><input id="folderUrl" class="input" value="${esc(root)}" placeholder="https://drive.google.com/drive/folders/..." inputmode="url" autocomplete="off"></div><button class="btn" id="syncRoot">↻ 同步子文件夹与 Excel</button><div class="subnote">总文件夹中放一本记录 Excel。Excel A 列填写完整子文件夹名，B 列填写原始视频文件名，C 列动作、D 列结果、E 列备注（第一行可直接是数据）。同步按文件夹名对应记录，不再按日期匹配；不会下载视频内容。</div><div id="importStatus" class="progress"></div><button class="btn secondary" id="clearOldFolders">清理旧文件夹记录（保留视频缓存）</button></div><div class="panel"><h3>本机空间</h3><div id="storageInfo" class="tinyrow">正在读取...</div><button class="btn secondary tiny" id="refreshStorage" style="margin-top:10px">更新存储信息</button><div class="subnote">浏览器可能在存储紧张或清理网站数据时自动清除离线视频；不能保证永久保留。建议 Safari 添加到主屏幕，并在出门前确认缓存状态。</div></div><div class="panel"><h3>使用须知</h3><div class="tinyrow">① GitHub Pages 仅提供网页代码，视频不会上传到 GitHub。<br>② 文件保留在 Google Drive；已获取的副本保存在本机浏览器 IndexedDB。<br>③ 无网络仍可看已缓存视频；没有缓存的视频无法播放。<br>④ 纯网页不能读取 iPhone 的真实 Wi-Fi 状态，也不能保证后台长时间下载。<br>⑤ 使用个人 Google 账号 OAuth 测试模式时，请将自己列为测试用户。</div></div>`}
-function render(){document.body.classList.toggle('stats-v11-theme',state.tab==='stats');document.body.classList.toggle('stats-v13-focus',state.tab==='stats'&&state.statsMode==='compare');setBadge();$('#page').innerHTML=state.tab==='folders'?folderPage():state.tab==='stats'?statsPage():state.tab==='clips'?clipsPage():settingsPage();document.querySelectorAll('[data-tab]').forEach(el=>el.setAttribute('aria-selected',String(el.dataset.tab===state.tab)));if(state.tab==='clips'){const f=current();for(const v of vfiles(f)){v.cached=!!v.cached}}if(state.tab==='settings')refreshStorage()}
-function setTab(name){if(name==='stats'&&!state.statsSelectionCustom)state.statsSelected=v12AutoSelection(state.folders).folders.map(f=>f.id);state.tab=name;render()}
+function render(){document.body.classList.toggle('stats-v11-theme',state.tab==='stats');document.body.classList.toggle('stats-v13-focus',state.tab==='stats'&&state.statsMode==='compare');document.body.classList.toggle('training-v14-theme',state.tab==='training');document.body.classList.toggle('training-v14-focus',state.tab==='training'&&train14.view==='practice'&&train14.large);setBadge();$('#page').innerHTML=state.tab==='folders'?folderPage():state.tab==='stats'?statsPage():state.tab==='training'?train14Page():state.tab==='clips'?clipsPage():settingsPage();document.querySelectorAll('[data-tab]').forEach(el=>el.setAttribute('aria-selected',String(el.dataset.tab===state.tab)));if(state.tab==='training')train14OnMount();if(state.tab==='clips'){const f=current();for(const v of vfiles(f)){v.cached=!!v.cached}}if(state.tab==='settings')refreshStorage()}
+function setTab(name){if(state.tab==='training'&&name!=='training')train14Stop(false);if(name==='stats'&&!state.statsSelectionCustom)state.statsSelected=v12AutoSelection(state.folders).folders.map(f=>f.id);state.tab=name;render()}
 function toFolderId(s){s=safeId(s);let m=s.match(/\/folders\/([\w-]+)/);if(m)return m[1];if(/^[\w-]{15,}$/.test(s))return s;throw Error('请输入 Google Drive 的文件夹链接或文件夹 ID')}
 function lazyGoogle(){return new Promise((ok,fail)=>{if(window.google?.accounts?.oauth2)return ok();let sc=document.createElement('script');sc.src='https://accounts.google.com/gsi/client';sc.async=true;sc.onload=ok;sc.onerror=()=>fail(Error('Google 登录组件加载失败，请检查网络'));document.head.appendChild(sc)})}
 let tokenClient;
@@ -510,9 +731,9 @@ function convertRows(rows,folder){let i=rows.findIndex(x=>{let text=(x||[]).slic
 async function importExcelBlob(blob,name){let f=current();if(!f)throw Error('先选择一个子文件夹');let rows;if(/\.csv$/i.test(name))rows=parseCSV((await blob.text()).replace(/^\uFEFF/,''));else{await loadSheetJS();let wb=XLSX.read(await blob.arrayBuffer(),{type:'array',cellDates:false});let sheet=wb.SheetNames.find(x=>x.includes('小岩')&&!x.includes('汇总'))||wb.SheetNames[0];rows=XLSX.utils.sheet_to_json(wb.Sheets[sheet],{header:1,defval:'',raw:true})}let records=convertRows(rows,f);if(!records.length)throw Error('没有匹配当前日期的有效 Excel 记录');f.records=records;f.savedAt=Date.now();await idbPut('folders',{id:f.id,name:f.name,date:f.date,files:f.files,records,savedAt:f.savedAt});await refreshLocal();let match=vfiles(f).filter(x=>fileRecord(f,x)).length;toast(`已导入 ${records.length} 条记录；匹配 ${match} 个视频`);return {records:records.length,match}}
 async function importDriveExcel(){let f=current();if(!f)throw Error('先选择文件夹');let arr=f.files.filter(x=>x.kind==='sheet').sort((a,b)=>(b.modifiedTime||'').localeCompare(a.modifiedTime||''));if(!arr.length)throw Error('该文件夹没有 Excel/CSV，请选择本地 Excel');await auth();let file=arr[0];let res=await driveFetch('https://www.googleapis.com/drive/v3/files/'+encodeURIComponent(file.id)+'?alt=media');return importExcelBlob(await res.blob(),file.name)}
 async function refreshStorage(){let el=$('#storageInfo');if(!el)return;try{let e=await navigator.storage.estimate();let v=await idbAll('videos');let cache=v.reduce((s,x)=>s+Number(x.size||0),0);el.textContent=`视频实际保存 ${v.length} 个（约 ${bytes(cache)}）· 浏览器已使用 ${bytes(e.usage)} · 可用配额上限 ${bytes(e.quota)}（估计值）`}catch(err){el.textContent='浏览器无法提供存储使用量'}}
-async function eventClick(e){let t=e.target.closest('button, label');if(!t)return;try{if(t.dataset.tab){setTab(t.dataset.tab);return}if(t.dataset.statMode){state.statsMode=t.dataset.statMode;render();return}if(t.dataset.v13Toggle){state.v13ChromeOpen=!state.v13ChromeOpen;render();return}if(t.dataset.statPickerToggle){state.statsPickerOpen=!state.statsPickerOpen;render();return}if(t.dataset.statReset){state.statsSelectionCustom=false;state.statsSelected=v12AutoSelection(state.folders).folders.map(f=>f.id);render();return}if(t.dataset.statPreset){const sorted=[...state.folders].sort((a,b)=>{let x=String(a.name).match(/^(?:20\d{2})?(\d{2})(\d{2})/),y=String(b.name).match(/^(?:20\d{2})?(\d{2})(\d{2})/);return (x?Number(x[1])*100+Number(x[2]):0)-(y?Number(y[1])*100+Number(y[2]):0)||String(a.name).localeCompare(String(b.name),'zh-CN',{numeric:true})});state.statsSelectionCustom=true;state.statsSelected=(t.dataset.statPreset==='all'?sorted:sorted.slice(-2)).map(f=>f.id);render();return}if(t.dataset.pick){state.folderId=t.dataset.pick;await updateCachedCounts();render();return}if(t.dataset.filter){state.filter=t.dataset.filter;render();return}if(t.dataset.play){await play(t.dataset.play);return}switch(t.id){case 'syncRoot':await syncRoot();break;case 'clearOldFolders':{if(!confirm('清理以前导入的文件夹记录和演示数据？不会删除已缓存的视频。清理后需要重新同步「篮球」。'))break;for(const f of await idbAll('folders'))await idbDelete('folders',f.id);state.folderId=null;await refreshLocal();toast('旧文件夹记录已清理，视频缓存未删除');break;}case 'downloadAll':await cacheFolder();break;case 'stop':state.stop=true;state.controller?.abort();toast('正在停止下载');break;case 'clearFolder':await clearFolder();break;case 'saveClient':{let val=$('#clientId').value.trim();if(val&&!/\.apps\.googleusercontent\.com$/.test(val))throw Error('客户端 ID 格式不正确');localStorage.setItem('hooplog_client_id',val);state.token=null;state.tokenExpiry=0;toast('客户端 ID 已保存');render();break}case 'googleLogin':{await auth();toast('Google 授权成功');render();break}case 'signout':{let tkn=state.token;state.token=null;state.tokenExpiry=0;if(tkn&&window.google?.accounts?.oauth2)google.accounts.oauth2.revoke(tkn,()=>{});render();break}case 'refreshStorage':await refreshStorage();break;case 'closeVideo':closePlayer();break;}}catch(err){console.error('HOOPLOG operation failed',err);const message=err instanceof Error?err.message:(typeof err==='string'?err:(err&&typeof err.message==='string'?err.message:'操作失败（浏览器返回了空错误信息，请检查 Google 授权）'));toast(message);const p=$('#downloadProgress');if(p&&!state.downloading)p.textContent='操作未完成：'+message;const im=$('#importStatus');if(im)im.textContent='操作未完成：'+message}}
-document.addEventListener('click',eventClick);document.addEventListener('change',async e=>{if(e.target.dataset?.statFolder){const id=e.target.dataset.statFolder;state.statsSelectionCustom=true;state.statsSelected=e.target.checked?[...new Set([...state.statsSelected,id])]:state.statsSelected.filter(x=>x!==id);render();return}if(e.target.id==='statAction'){state.statsAction=e.target.value;render();return}if(false && e.target.id==='excelInput'){let file=e.target.files?.[0];if(!file)return;try{let r=await importExcelBlob(file,file.name);let el=$('#importStatus');if(el)el.textContent=`Excel 成功：${r.records} 条记录，${r.match} 个视频匹配`}catch(err){toast(err?.message||'导入失败');let el=$('#importStatus');if(el)el.textContent=err?.message||'导入失败'}}});
-window.addEventListener('online',()=>{setBadge()});window.addEventListener('offline',()=>{state.stop=true;state.controller?.abort();setBadge()});document.addEventListener('visibilitychange',()=>{if(document.hidden&&state.downloading){state.stop=true;state.controller?.abort();toast('页面进入后台，下载已暂停')}});
+async function eventClick(e){let t=e.target.closest('button, label');if(!t)return;try{if(t.dataset.tab){setTab(t.dataset.tab);return}if(t.dataset.train14Open){train14.view='practice';train14.large=false;render();return}if(t.dataset.train14Back){train14Stop(false);train14.view='list';train14.large=false;render();return}if(t.dataset.train14Play){if(train14.running)train14Stop();else train14Start();return}if(t.dataset.train14Focus){train14.large=!train14.large;render();return}if(t.dataset.statMode){state.statsMode=t.dataset.statMode;render();return}if(t.dataset.v13Toggle){state.v13ChromeOpen=!state.v13ChromeOpen;render();return}if(t.dataset.statPickerToggle){state.statsPickerOpen=!state.statsPickerOpen;render();return}if(t.dataset.statReset){state.statsSelectionCustom=false;state.statsSelected=v12AutoSelection(state.folders).folders.map(f=>f.id);render();return}if(t.dataset.statPreset){const sorted=[...state.folders].sort((a,b)=>{let x=String(a.name).match(/^(?:20\d{2})?(\d{2})(\d{2})/),y=String(b.name).match(/^(?:20\d{2})?(\d{2})(\d{2})/);return (x?Number(x[1])*100+Number(x[2]):0)-(y?Number(y[1])*100+Number(y[2]):0)||String(a.name).localeCompare(String(b.name),'zh-CN',{numeric:true})});state.statsSelectionCustom=true;state.statsSelected=(t.dataset.statPreset==='all'?sorted:sorted.slice(-2)).map(f=>f.id);render();return}if(t.dataset.pick){state.folderId=t.dataset.pick;await updateCachedCounts();render();return}if(t.dataset.filter){state.filter=t.dataset.filter;render();return}if(t.dataset.play){await play(t.dataset.play);return}switch(t.id){case 'syncRoot':await syncRoot();break;case 'clearOldFolders':{if(!confirm('清理以前导入的文件夹记录和演示数据？不会删除已缓存的视频。清理后需要重新同步「篮球」。'))break;for(const f of await idbAll('folders'))await idbDelete('folders',f.id);state.folderId=null;await refreshLocal();toast('旧文件夹记录已清理，视频缓存未删除');break;}case 'downloadAll':await cacheFolder();break;case 'stop':state.stop=true;state.controller?.abort();toast('正在停止下载');break;case 'clearFolder':await clearFolder();break;case 'saveClient':{let val=$('#clientId').value.trim();if(val&&!/\.apps\.googleusercontent\.com$/.test(val))throw Error('客户端 ID 格式不正确');localStorage.setItem('hooplog_client_id',val);state.token=null;state.tokenExpiry=0;toast('客户端 ID 已保存');render();break}case 'googleLogin':{await auth();toast('Google 授权成功');render();break}case 'signout':{let tkn=state.token;state.token=null;state.tokenExpiry=0;if(tkn&&window.google?.accounts?.oauth2)google.accounts.oauth2.revoke(tkn,()=>{});render();break}case 'refreshStorage':await refreshStorage();break;case 'closeVideo':closePlayer();break;}}catch(err){console.error('HOOPLOG operation failed',err);const message=err instanceof Error?err.message:(typeof err==='string'?err:(err&&typeof err.message==='string'?err.message:'操作失败（浏览器返回了空错误信息，请检查 Google 授权）'));toast(message);const p=$('#downloadProgress');if(p&&!state.downloading)p.textContent='操作未完成：'+message;const im=$('#importStatus');if(im)im.textContent='操作未完成：'+message}}
+document.addEventListener('click',eventClick);document.addEventListener('change',async e=>{if(e.target.id==='train14-mode'&&!train14.running){train14.mode=e.target.value;render();return}if(e.target.id==='train14-speed'&&!train14.running){train14.period=Number(e.target.value);render();return}if(e.target.id==='train14-hide'&&!train14.running){train14.hideArrow=e.target.checked;render();return}if(e.target.dataset?.statFolder){const id=e.target.dataset.statFolder;state.statsSelectionCustom=true;state.statsSelected=e.target.checked?[...new Set([...state.statsSelected,id])]:state.statsSelected.filter(x=>x!==id);render();return}if(e.target.id==='statAction'){state.statsAction=e.target.value;render();return}if(false && e.target.id==='excelInput'){let file=e.target.files?.[0];if(!file)return;try{let r=await importExcelBlob(file,file.name);let el=$('#importStatus');if(el)el.textContent=`Excel 成功：${r.records} 条记录，${r.match} 个视频匹配`}catch(err){toast(err?.message||'导入失败');let el=$('#importStatus');if(el)el.textContent=err?.message||'导入失败'}}});
+window.addEventListener('online',()=>{setBadge()});window.addEventListener('offline',()=>{state.stop=true;state.controller?.abort();setBadge()});document.addEventListener('visibilitychange',()=>{if(document.hidden&&train14.running)train14Stop();if(document.hidden&&state.downloading){state.stop=true;state.controller?.abort();toast('页面进入后台，下载已暂停')}});
 (async()=>{try{db=await openDB();await refreshLocal();if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(e=>console.warn('SW unavailable',e));}catch(e){console.error(e);$('#page').innerHTML='<div class="alert danger">当前浏览器无法使用本地视频数据库，请尝试从 Safari 打开 HTTPS 网站并关闭无痕模式。'+esc(e?.message||'未知错误')+'</div>'}})();
 })();
 </script>
