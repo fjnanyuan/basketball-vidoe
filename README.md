@@ -12,7 +12,31 @@
 
 ## 发布到 GitHub Pages
 
-将此压缩包中的 `index.html`、`sw.js`、`manifest.webmanifest` 覆盖到现有仓库的根目录，保留其他已有文件；提交后刷新网页。
+日常开发流程改为：**手机提出需求 → 获取最新代码 → 独立分支修改和测试 → PR 展示结果 → 用户确认 → 合并 main → 自动检查并部署 Pages**。不需要下载 ZIP 或手动覆盖文件。开发约定见 [AGENTS.md](AGENTS.md)。
+
+`.github/workflows/pages.yml` 在 PR 中运行 Chromium 和 WebKit 功能测试，生成 `hooplog-preview-<commit>` 构建供审查；PR 不会发布正式站。切换 Pages 发布源后，该工作流仅在合并到 `main` 且两种浏览器检查均成功时部署。工作流完成部署后还会核对 `version.json` 的提交号和静态资源，避免仅凭页面标题判断版本。
+
+首次启用此流程时，需要在 GitHub 仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。应在用户批准的迁移时机完成设置，不要为了检查 PR 擅自修改线上发布源。只合并 YAML、仍保留原来的分支发布源时，旧 Pages 流程可能绕过测试立即部署，并与新流程竞争，因此不能声称发布门禁已生效。建议同时在分支规则中要求 PR 和两项 `Check` 成功，防止绕过确认直接推送 `main`。
+
+预览构建可从 PR 的 Actions 运行页面下载，用静态服务器查看；它不是公开预览网址。生成的测试截图单独保存为 `hooplog-screenshots-<browser>-<commit>` 构件，只含合成测试资料，不放入正式站目录。当前没有配置独立的在线 PR 预览托管，手机审查可先查看截图和测试报告。真实 Pages 部署是否完成，以对应 Actions 日志和正式网址的版本核验为准。
+
+## 本地开发与自动验证
+
+从仓库根目录启动 `python3 -m http.server 8000 --bind 127.0.0.1`。应用本身无需 npm 安装或构建；以下依赖仅用于检查：
+
+```sh
+python3 -m pip install -r requirements-test.txt
+python3 -m playwright install chromium webkit
+python3 scripts/fetch_test_assets.py
+HOOPLOG_BROWSER=chromium python3 -m unittest discover -s tests -v
+HOOPLOG_BROWSER=webkit python3 -m unittest discover -s tests -v
+```
+
+测试使用临时浏览器上下文及合成顾客、照片和表格，不读取正式客户资料。测试包含真实 IndexedDB 和 localStorage 操作；模拟 Google API 的结果不能代替真实账户的授权验收。普通 HTTP 开发时，应用不会自动注册 Service Worker；离线更新测试会在 localhost 安全上下文中显式注册，正式站在 HTTPS 下自动注册。
+
+合成 XLSX 测试使用经校验的 SheetJS 0.18.5，与应用已有的备用解析版本一致；这不代表主 CDN 的 0.20.3 加载或用户原始工作簿已经验证。
+
+发布目录由 `python3 scripts/build_site.py --output _site --commit "$(git rev-parse HEAD)"` 生成，只包含允许公开的页面、Service Worker、manifest 和版本标识，不上传测试、照片、浏览器数据或仓库隐藏文件。
 
 ## 第一次使用「冒险」上传
 
@@ -35,9 +59,8 @@
 - 两台设备同时编辑同一照片备注可能出现最后写入覆盖，建议避免同时编辑。删除浏览器网站数据前应确认云端成功。
 - v18 无服务器端 OAuth 密钥，无人脸识别，也不公开顾客照片。原有篮球视频缓存数据库保留；IndexedDB 升级仅新增 `adventure_media` object store，不清空 `videos`/`folders`。
 
-## 已完成的验证
+## 验证范围与限制
 
-- Node JavaScript 语法检查。
-- 本地受限浏览器内的交互验证（虚拟 IndexedDB / localStorage）：新增顾客、上传模板、添加约拍、上传实拍、标记重拍、修改备注。
-- 模拟 Drive API：文件夹创建、原始模板与实拍上传、元数据索引保存及成功状态检查。
-- **尚未接入真实 Google 账户验证 OAuth 弹窗、Drive 上传、跨设备同步，也未在真实 iPhone Safari 验证。** 请先用非敏感测试照片实际上传，看到云端文件后再使用顾客正式照片。
+- 自动检查覆盖 JavaScript 语法、篮球统计和训练、顾客与多张照片、约拍与评价、持久化、模拟 Drive 同步及离线网页更新。每次结果以该次测试输出为准，不把未执行的项目写为通过。
+- Chromium 与 WebKit 的窄屏测试能够发现部分浏览器差异，但不能代替实机 iPhone Safari。
+- **真实 Google OAuth 弹窗、Drive 上传和文件夹权限、跨设备恢复、用户原有真实 Excel，以及实机 iPhone Safari：没有对应授权或设备时均标记为未验证。** 请先用非敏感测试照片实际上传，确认云端文件及关联正确后再使用正式客户资料。
