@@ -735,8 +735,8 @@ function adv18GetCustomer(){return adv18.data.customers.find(x=>x.id===adv18.cli
 function adv18GetTemplate(){return adv18.data.templates.find(x=>x.id===adv18.templateId)||null}
 function adv18GetShots(){return adv18.data.shots.filter(x=>x.customerId===adv18.clientId&&x.templateId===adv18.templateId).sort((a,b)=>(b.created||0)-(a.created||0))}
 function adv18GetShot(){return adv18GetShots().find(x=>x.id===adv18.shotId)||adv18GetShots()[0]||null}
-function adv18HasPlan(id){return adv18.data.plans.some(x=>x.customerId===adv18.clientId&&x.templateId===id)}
-function adv18Plan(id){return adv18.data.plans.find(x=>x.customerId===adv18.clientId&&x.templateId===id)}
+function adv18HasPlan(id){return adv18.data.plans.some(x=>x.customerId===adv18.clientId&&x.templateId===id&&!x.deleted)}
+function adv18Plan(id){return adv18.data.plans.find(x=>x.customerId===adv18.clientId&&x.templateId===id&&!x.deleted)}
 function adv18EnsureSelection(){if(!adv18.data.customers.some(x=>x.id===adv18.clientId))adv18.clientId=adv18.data.customers[0]?.id||'';if(!adv18.data.templates.some(x=>x.id===adv18.templateId))adv18.templateId=adv18.data.templates[0]?.id||'';if(!adv18GetShots().some(x=>x.id===adv18.shotId))adv18.shotId=adv18GetShots()[0]?.id||''}
 function adv18IsOnline(){return !!(adv18.token&&Date.now()<adv18.expiry-30000&&navigator.onLine)}
 function adv18RecordStatus(x){return x?.driveId?'已同步':'待同步'}
@@ -778,6 +778,17 @@ async function adv18FetchFile(id){if(!adv18IsOnline())return null;const r=await 
 async function adv18GetSrc(assetId){if(adv18.mediaUrls.has(assetId))return adv18.mediaUrls.get(assetId);let media=await adv18GetMediaDB(assetId),blob=media?.blob;if(!blob){const obj=adv18MediaObj(assetId);if(obj?.driveId&&adv18IsOnline()){blob=await adv18FetchFile(obj.driveId);await adv18PutMedia(assetId,blob,obj.fileName||'Google Drive 图片').catch(()=>{})}}if(!blob)return '';const u=URL.createObjectURL(blob);adv18.mediaUrls.set(assetId,u);return u}
 function adv18Mount(){document.querySelectorAll('[data-adv18-img]').forEach(async img=>{const id=img.dataset.adv18Img;try{const src=await adv18GetSrc(id);if(src&&img.isConnected)img.src=src}catch(e){console.warn('冒险图片读取失败',id,e)}})}
 function adv18SaveAndRender(sync=true){adv18Store();render();if(sync)adv18QueueSync()}
+// Background sync must not discard text the user is still editing.
+function adv18RenderSync(){
+ if(state.tab!=='adventure')return;
+ const drafts=[...document.querySelectorAll('.adv18 input[id]:not([type="file"]),.adv18 textarea[id]')].map(el=>({id:el.id,value:el.value,dirty:el.value!==el.defaultValue,focused:el===document.activeElement,start:el.selectionStart,end:el.selectionEnd}));
+ render();
+ for(const draft of drafts){
+  const el=document.getElementById(draft.id);if(!el)continue;
+  if(draft.dirty)el.value=draft.value;
+  if(draft.focused){el.focus({preventScroll:true});if(typeof draft.start==='number')el.setSelectionRange(draft.start,draft.end)}
+ }
+}
 function adv18SetPlan(tid,reason){const old=adv18Plan(tid);if(old){old.reason=reason;old.deleted=false;old.updatedAt=Date.now()}else adv18.data.plans.push({customerId:adv18.clientId,templateId:tid,reason,updatedAt:Date.now()});adv18SaveAndRender()}
 function adv18Notice(text){adv18.syncMessage=text;if(state.tab==='adventure')render();toast(text)}
 async function adv18HandleClick(t){const action=t.dataset.adv18;const id=t.dataset.id||'';
@@ -822,10 +833,10 @@ async function adv18WriteManifest(){const raw=JSON.stringify(adv18.data);const b
 }
 function adv18Merge(data){for(const category of ['customers','templates','shots','plans']){const local=adv18.data[category],remote=Array.isArray(data?.[category])?data[category]:[],key=x=>category==='plans'?x.customerId+':'+x.templateId:x.id;const map=new Map(remote.map(x=>[key(x),x]));for(const x of local){const k=key(x),y=map.get(k);if(!y||(x.updatedAt||0)>(y.updatedAt||0))map.set(k,x)}adv18.data[category]=[...map.values()]}}
 async function adv18LoadRemote(){const root=await adv18Root();if(!adv18.manifestId){const arr=await adv18List(root,'冒险资料.json');adv18.manifestId=arr.find(x=>x.mimeType==='application/json')?.id||'';if(adv18.manifestId)localStorage.setItem('hooplog_adventure_manifest_id',adv18.manifestId)}if(adv18.manifestId){try{const res=await adv18Request('https://www.googleapis.com/drive/v3/files/'+encodeURIComponent(adv18.manifestId)+'?alt=media');adv18Merge(await res.json());adv18Store()}catch(e){adv18.status='云端记录读取失败，未覆盖本机：'+e.message;throw e}}adv18.remoteLoaded=true}
-async function adv18Sync(){if(adv18.busy){adv18.retry=true;return}if(!adv18IsOnline()){adv18.status='授权已过期或网络中断；上传任务保留在本机';render();return}adv18.busy=true;adv18.status='正在同步 Google Drive';render();try{await adv18Root();if(!adv18.remoteLoaded)await adv18LoadRemote();for(const rec of [...adv18.data.templates,...adv18.data.shots]){if(rec.driveId)continue;const f=await adv18GetMediaDB(rec.assetId);if(!f?.blob){adv18.status='有图片只保存了索引但没有本机原件，请从原设备重试';continue}let folder;if(adv18.data.templates.includes(rec))folder=await adv18Folder('姿势模板');else {const c=adv18.data.customers.find(x=>x.id===rec.customerId);const t=adv18.data.templates.find(x=>x.id===rec.templateId);folder=await adv18Folder('顾客实拍',`${(c?.name||'未知顾客').replace(/[\\/]/g,'_')}__${rec.customerId.slice(-6)}`,`${(t?.title||'未知模板').replace(/[\\/]/g,'_')}__${rec.templateId.slice(-6)}`)}
-  const id=await adv18UploadBlob(f.blob,rec.fileName||'照片.jpg',rec.mime||f.blob.type||'application/octet-stream',folder);rec.driveId=id;rec.updatedAt=Date.now();adv18Store();if(state.tab==='adventure')render()}
+async function adv18Sync(){if(adv18.busy){adv18.retry=true;return}if(!adv18IsOnline()){adv18.status='授权已过期或网络中断；上传任务保留在本机';adv18RenderSync();return}adv18.busy=true;adv18.status='正在同步 Google Drive';adv18RenderSync();try{await adv18Root();if(!adv18.remoteLoaded)await adv18LoadRemote();for(const rec of [...adv18.data.templates,...adv18.data.shots]){if(rec.driveId)continue;const f=await adv18GetMediaDB(rec.assetId);if(!f?.blob){adv18.status='有图片只保存了索引但没有本机原件，请从原设备重试';continue}let folder;if(adv18.data.templates.includes(rec))folder=await adv18Folder('姿势模板');else {const c=adv18.data.customers.find(x=>x.id===rec.customerId);const t=adv18.data.templates.find(x=>x.id===rec.templateId);folder=await adv18Folder('顾客实拍',`${(c?.name||'未知顾客').replace(/[\\/]/g,'_')}__${rec.customerId.slice(-6)}`,`${(t?.title||'未知模板').replace(/[\\/]/g,'_')}__${rec.templateId.slice(-6)}`)}
+  const id=await adv18UploadBlob(f.blob,rec.fileName||'照片.jpg',rec.mime||f.blob.type||'application/octet-stream',folder);rec.driveId=id;rec.updatedAt=Date.now();adv18Store();if(state.tab==='adventure')adv18RenderSync()}
  await adv18WriteManifest();adv18.status='已同步到 Google Drive';adv18.syncMessage=`照片确认上传 ${[...adv18.data.templates,...adv18.data.shots].filter(x=>x.driveId).length} 张`;
- }catch(e){adv18.status='同步失败：'+e.message;adv18.syncMessage='未完成的照片仍在本机，可重试';console.error('冒险同步失败',e)}finally{adv18.busy=false;if(state.tab==='adventure')render();if(adv18.retry){adv18.retry=false;adv18Sync()}}}
+ }catch(e){adv18.status='同步失败：'+e.message;adv18.syncMessage='未完成的照片仍在本机，可重试';console.error('冒险同步失败',e)}finally{adv18.busy=false;if(state.tab==='adventure')adv18RenderSync();if(adv18.retry){adv18.retry=false;adv18Sync()}}}
 function adv18QueueSync(){if(!adv18IsOnline()){if(state.tab==='adventure')render();return}adv18Sync().catch(e=>console.error(e))}
 async function adv18Connect(){adv18.status='正在申请 Google 写入授权';render();try{await adv18Authorize();adv18.status='已授权，读取云端资料';render();await adv18LoadRemote();adv18EnsureSelection();await adv18Sync();toast('冒险 · Google Drive 连接完成')}catch(e){adv18.status='连接失败：'+e.message;render();toast(adv18.status)}}
 
