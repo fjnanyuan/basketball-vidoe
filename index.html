@@ -140,6 +140,7 @@ body.stats-v13-focus .v11-footer-hint{margin:9px 3px 5px}
 .v13-metric{padding:7px 0 8px;border-top:1px solid #edf1f6}
 .v13-metric:first-of-type{border-top:0}
 .v13-metric-title{color:#596c84;font-size:12px;font-weight:650;margin-bottom:4px}
+.v13-metric.v13-made .v13-metric-title,.v13-metric.v13-made .v13-seq-value{color:#e53935;font-size:14px}
 .v13-action .v13-figure{font-size:clamp(17px,5.7vw,26px)}
 .v13-action .v13-sequence.v13-4 .v13-figure{font-size:clamp(15px,4.7vw,21px)}
 .v13-rate .v13-figure{color:#18375f;font-weight:900}
@@ -503,7 +504,7 @@ function v13CompareContent(groups){
  for(const action of V13_COMPARE_ACTIONS){
   result+=`<section class="v13-action" aria-label="${action.name}对比"><div class="v13-action-title"><span class="v13-action-symbol" aria-hidden="true">${action.icon}</span>${action.name}</div>`;
   for(const metric of [{key:'shots',name:'出手'},{key:'made',name:'命中'},{key:'rate',name:'命中率'}]){
-   result+=`<div class="v13-metric ${metric.key==='rate'?'v13-rate':''}"><div class="v13-metric-title">${metric.name}</div>${v13Sequence(groups,action.kind,metric.key)}</div>`;
+   result+=`<div class="v13-metric ${metric.key==='rate'?'v13-rate':metric.key==='made'?'v13-made':''}"><div class="v13-metric-title">${metric.name}</div>${v13Sequence(groups,action.kind,metric.key)}</div>`;
   }
   result+='</section>';
  }
