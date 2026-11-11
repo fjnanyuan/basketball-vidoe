@@ -781,11 +781,11 @@ function adv18SaveAndRender(sync=true){adv18Store();render();if(sync)adv18QueueS
 // Background sync must not discard text the user is still editing.
 function adv18RenderSync(){
  if(state.tab!=='adventure')return;
- const drafts=[...document.querySelectorAll('.adv18 input[id]:not([type="file"]),.adv18 textarea[id]')].map(el=>({id:el.id,value:el.value,focused:el===document.activeElement,start:el.selectionStart,end:el.selectionEnd}));
+ const drafts=[...document.querySelectorAll('.adv18 input[id]:not([type="file"]),.adv18 textarea[id]')].map(el=>({id:el.id,value:el.value,dirty:el.value!==el.defaultValue,focused:el===document.activeElement,start:el.selectionStart,end:el.selectionEnd}));
  render();
  for(const draft of drafts){
   const el=document.getElementById(draft.id);if(!el)continue;
-  el.value=draft.value;
+  if(draft.dirty)el.value=draft.value;
   if(draft.focused){el.focus({preventScroll:true});if(typeof draft.start==='number')el.setSelectionRange(draft.start,draft.end)}
  }
 }

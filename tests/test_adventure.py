@@ -472,3 +472,63 @@ class AdventureTests(BrowserTestCase):
                 response.request.method == 'PATCH' and draft in (response.request.post_data or '')):
             self.page.locator('[data-adv18="saveShotNote"]').click()
         self.assertEqual(self.data()['shots'][0]['note'], draft)
+
+    def test_reconnect_shows_new_remote_note_when_saved_field_is_unchanged(self):
+        drive = FakeDrive()
+        drive.install(self.context)
+        self.open_app()
+        self.customer('测试顾客 A')
+        self.upload_template()
+        self.page.locator('[data-adv18="openCompare"]').click()
+        self.upload_photo(PHOTO_ONE)
+        old_note, new_note = '原来保存的评价', '另一设备保存的新评价'
+        self.page.locator('#adv18-shot-note').fill(old_note)
+        self.page.locator('[data-adv18="saveShotNote"]').click()
+
+        # Simulate the same records edited more recently on another device.
+        remote = self.data()
+        for category in ('customers', 'templates', 'shots'):
+            for record in remote[category]:
+                record['updatedAt'] += 1
+        remote['templates'][0]['driveId'] = 'remote-template'
+        remote['shots'][0]['driveId'] = 'remote-photo'
+        remote['shots'][0]['note'] = new_note
+        drive.files = {
+            'remote-root': {'id': 'remote-root', 'name': '冒险', 'parents': ['root'],
+                            'mimeType': 'application/vnd.google-apps.folder'},
+            'remote-manifest': {'id': 'remote-manifest', 'name': '冒险资料.json',
+                                'parents': ['remote-root'], 'mimeType': 'application/json',
+                                'blob': json.dumps(remote).encode()},
+            'remote-template': {'id': 'remote-template', 'name': 'template.png',
+                                'mimeType': 'image/png', 'blob': TEMPLATE},
+            'remote-photo': {'id': 'remote-photo', 'name': 'actual.png',
+                             'mimeType': 'image/png', 'blob': PHOTO_ONE},
+        }
+        held = []
+        self.context.route('https://www.googleapis.com/drive/v3/files/remote-manifest?alt=media',
+                           lambda route: held.append(route))
+        self.page.locator('[data-tab="settings"]').click()
+        self.page.locator('#clientId').fill('test-client.apps.googleusercontent.com')
+        self.page.locator('#saveClient').click()
+        self.page.locator('[data-tab="adventure"]').click()
+        self.view('cloud')
+        self.page.locator('[data-adv18="connect"]').click()
+        for _ in range(200):
+            if held:
+                break
+            self.page.wait_for_timeout(10)
+        self.assertEqual(len(held), 1, 'Expected remote manifest download to be pending')
+
+        # View a previously saved field while reconnect is still loading. It is
+        # not a draft and must not mask the newer remote value after the merge.
+        self.view('compare')
+        note = self.page.locator('#adv18-shot-note')
+        expect(note).to_have_value(old_note)
+        self.assertEqual(note.evaluate('(el) => el.value === el.defaultValue'), True)
+        held[0].fulfill(content_type='application/json',
+                        headers={'Access-Control-Allow-Origin': '*'}, body=json.dumps(remote))
+        self.wait_synced()
+        self.assertEqual(self.data()['shots'][0]['note'], new_note)
+        expect(note).to_have_value(new_note)
+        self.assertEqual(note.evaluate('(el) => el.defaultValue'), new_note)
+        self.assertEqual(drive.unhandled, [])
