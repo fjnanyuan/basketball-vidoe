@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101719">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="manifest" href="./manifest.webmanifest"><title>HOOPLOG v16 · 篮球统计、离线视频与反应训练</title>
+<link rel="manifest" href="./manifest.webmanifest"><title>HOOPLOG v17 · 篮球统计、离线视频与反应训练</title>
 <style>
 :root{color-scheme:dark;--bg:#101719;--panel:#1a2427;--panel2:#243033;--line:#344447;--muted:#96a9a8;--green:#d6f58a;--red:#ffad9e;--text:#edf4ef;--blue:#a6d0ff}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC",sans-serif;color:var(--text);padding-bottom:calc(95px + env(safe-area-inset-bottom))}button,input,select{font:inherit}button{cursor:pointer;touch-action:manipulation}button:disabled{opacity:.38;cursor:not-allowed}a{color:var(--green)}main{max-width:760px;margin:auto;padding:16px 16px 22px}header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px}.brand{font-size:18px;letter-spacing:1.5px;font-weight:900}.brand span{display:inline-block;background:var(--green);color:#15211c;padding:7px 9px;border-radius:10px;margin-right:7px}.subtitle,.muted{color:var(--muted);font-size:12px;line-height:1.65}.title{font-size:23px;font-weight:800;letter-spacing:-.6px;margin:9px 0 6px}h2{font-size:16px;margin:22px 0 10px}h3{margin:0 0 7px;font-size:14px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:15px;margin:11px 0}.hero{background:linear-gradient(125deg,#2f442e,#1b2a26 80%);border:1px solid #53704b;border-radius:19px;padding:18px;margin:14px 0}.score{font-size:65px;line-height:1.1;font-weight:900;letter-spacing:-2px;color:var(--green)}.score small{font-size:12px;letter-spacing:0}.row{display:flex;align-items:center;justify-content:space-between;gap:9px}.wrap{flex-wrap:wrap}.stack{display:grid;gap:10px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.stat{border-radius:13px;background:var(--panel2);padding:11px}.stat b{display:block;font-size:23px}.stat small{color:var(--muted);font-size:11px}.pill{border-radius:20px;padding:5px 9px;background:#33413c;color:#d0e8d2;font-size:11px;white-space:nowrap}.pill.ok{background:#24472e;color:#bbedae}.pill.warn{background:#453e25;color:#fff2ae}.pill.err{background:#492e30;color:#ffd1c9}.btn{border:0;border-radius:12px;padding:12px 14px;font-weight:750;background:var(--green);color:#17241c;font-size:13px;min-height:43px}.btn.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}.btn.danger{background:#4e2a2c;color:#ffd5cd}.btn.tiny{padding:8px 10px;min-height:33px;font-size:11px}.btn:focus-visible,input:focus-visible{outline:2px solid var(--green);outline-offset:2px}.input{background:#131d20;color:var(--text);border:1px solid #526363;border-radius:11px;padding:12px;width:100%;font-size:14px;min-width:0}.input::placeholder{color:#758c8c}.field{display:grid;gap:7px}.field label{font-size:12px;color:#b5c6c4}.subnote{font-size:11px;color:#a8bdba;line-height:1.7;margin-top:8px}.folder{display:flex;justify-content:space-between;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:13px;text-align:left;width:100%;color:var(--text);margin:8px 0}.folder.selected{border-color:#acd767;background:#223327}.folder-info{min-width:0;flex:1}.folder-name{font-size:14px;font-weight:750;overflow-wrap:anywhere}.meter{height:8px;border-radius:9px;background:#374649;overflow:hidden}.meter>div{height:100%;background:var(--green);border-radius:9px;transition:width .2s}.clip{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;text-align:left;width:100%;color:var(--text);margin:8px 0}.clip .ico{background:#334640;padding:12px;border-radius:12px;color:var(--green)}.clip .info{min-width:0;flex:1}.clip .info b{font-size:13px;display:block;overflow-wrap:anywhere}.clip .info small{color:var(--muted);font-size:11px;display:block;margin-top:3px;overflow-wrap:anywhere}.dot{width:8px;height:8px;background:#a0a0a0;border-radius:100%;flex-shrink:0}.dot.ok{background:#b8ed87}.tabs{position:fixed;bottom:0;left:0;right:0;margin:auto;max-width:760px;background:#151f22ed;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:10px 10px calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(4,1fr);gap:3px;z-index:10}.tab{background:transparent;border:0;color:#91a6a5;font-size:12px;padding:8px 3px}.tab[aria-selected=true]{color:var(--green);font-weight:800}.tab i{display:block;font-style:normal;font-size:20px;margin-bottom:3px}.alert{border-radius:12px;padding:11px 12px;border:1px solid #5d6145;background:#302f24;color:#e7e1b0;font-size:12px;line-height:1.6;margin:11px 0}.alert.danger{border-color:#684449;background:#3c292d;color:#ffd3c9}.alert.good{border-color:#385c45;background:#263d2e;color:#c4e9c5}.empty{text-align:center;padding:25px 12px;color:var(--muted);font-size:13px;line-height:1.7}.progress{font-size:12px;color:#c0d4bd;min-height:18px;line-height:1.6}.divider{border:0;border-top:1px solid var(--line);margin:15px 0}.shot{margin:12px 0}.shot b{font-size:13px}.shot small{font-size:11px;color:var(--muted)}.filters{display:flex;gap:8px;overflow-x:auto;padding:5px 0 12px}.filter{white-space:nowrap;background:var(--panel2);color:#d7e4e0;border:1px solid var(--line);padding:8px 12px;border-radius:20px;font-size:12px}.filter.active{background:var(--green);color:#19301b}.player{position:fixed;inset:0;background:#050b0af5;z-index:40;padding:calc(15px + env(safe-area-inset-top)) 15px calc(20px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:13px;overflow-y:auto}.player video{width:100%;max-height:56vh;background:black;border-radius:15px}.player h2{margin:0}.player .notes{white-space:pre-wrap;overflow-wrap:anywhere;background:#1e2929;border-radius:12px;padding:12px;color:#dce5df;font-size:13px}input[type=checkbox]{accent-color:#a9d86a;transform:scale(1.2);margin-right:9px}label.check{display:flex;gap:7px;align-items:start;font-size:12px;line-height:1.5;color:#dce6dd}.hide{display:none!important}.tinyrow{font-size:12px;color:#b9cfca;line-height:1.65}.chip{display:inline-block;border:1px solid #445455;border-radius:9px;padding:5px 8px;color:#bfd2cb;font-size:11px}.warning-text{color:#ffc1aa}#toast{position:fixed;bottom:calc(90px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);border-radius:12px;background:#e1f8ac;color:#1e301e;padding:11px 15px;z-index:50;font-size:13px;box-shadow:0 4px 25px #0006;max-width:92vw;min-width:180px;text-align:center;display:none}
@@ -273,8 +273,8 @@ const normResult=r=>String(r||'').trim();
 function dateText(v){if(v==null||v==='')return '';if(v instanceof Date)return v.toISOString().slice(0,10);if(typeof v==='number'){let d=new Date(Date.UTC(1899,11,30)+Math.round(v)*86400000);return isNaN(+d)?'':d.toISOString().slice(0,10)}let s=String(v).trim();let m=s.match(/(20\d{2})[-/.年](\d{1,2})[-/.月](\d{1,2})/);if(m)return `${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`;return s}
 const guessDate=name=>dateText(name);
 function fileRecord(folder,video){let key=normalizeName(video.name);return (folder?.records||[]).find(r=>normalizeName(r.clip)===key)||null}
-// v16: 统一的投篮动作表。同步到各统计页面与视频动作筛选。
-const SHOT_ACTIONS=['原地投篮','一次突破上篮','篮下直接终结','篮下反篮','突破急停跳投'];
+// v17: 五项投篮动作在单场、汇总与对比保持一致的顺序。
+const SHOT_ACTIONS=['原地投篮','一次突破上篮','篮下反篮','篮下直接终结','突破急停跳投'];
 function stats(folder){let rows=folder?.records||[];let item=SHOT_ACTIONS.map(name=>{let v=rows.filter(r=>r.action===name);return {name,made:v.filter(r=>r.result==='成功').length,total:v.length}});let made=item.reduce((n,x)=>n+x.made,0),total=item.reduce((n,x)=>n+x.total,0);return{made,total,points:made*2,cats:item,turnovers:rows.filter(r=>r.action==='失误').length,invalid:rows.filter(r=>r.action==='无效运球').length,classified:rows.filter(r=>r.action).length,recorded:rows.length}}
 async function cleanLegacyMetadata(){
  const root=localStorage.getItem('hooplog_root_id');
@@ -364,8 +364,19 @@ const V13_BASELINES={
  standing:{shots:{normal:20,relative:0.30,noise:1},made:{normal:6,relative:0.43,noise:0.9},rate:{normal:30,relative:0.35,noise:2}},
  drive:{shots:{normal:5,relative:0.90,noise:1},made:{normal:2.5,relative:0.85,noise:0.7},rate:{normal:50,relative:0.43,noise:4}},
  // 尚无“篮下反篮”的个人长期基准，暂按小样本近筐动作的尺度显示趋势。
- reverse:{shots:{normal:5,relative:0.90,noise:1},made:{normal:2.5,relative:0.85,noise:0.7},rate:{normal:50,relative:0.43,noise:4}}
+ reverse:{shots:{normal:5,relative:0.90,noise:1},made:{normal:2.5,relative:0.85,noise:0.7},rate:{normal:50,relative:0.43,noise:4}},
+ // 直接终结与急停跳投尚无单独长期基准：暂采用保守的小样本尺度，后续可据记录调整。
+ finish:{shots:{normal:5,relative:0.90,noise:1},made:{normal:2.5,relative:0.85,noise:0.7},rate:{normal:50,relative:0.43,noise:4}},
+ pullup:{shots:{normal:5,relative:0.90,noise:1},made:{normal:1.5,relative:1.00,noise:0.9},rate:{normal:30,relative:0.35,noise:4}}
 };
+// 统计对比所展示的五项动作必须与 SHOT_ACTIONS 同源、顺序一致。
+const V13_COMPARE_ACTIONS=[
+ {kind:'standing',name:'原地投篮',icon:'◎'},
+ {kind:'drive',name:'一次突破上篮',icon:'↗'},
+ {kind:'reverse',name:'篮下反篮',icon:'⤴'},
+ {kind:'finish',name:'篮下直接终结',icon:'⊙'},
+ {kind:'pullup',name:'突破急停跳投',icon:'⇧'}
+];
 function v13Angle(a,b,kind,metric){
  if(!Number.isFinite(a)||!Number.isFinite(b)||a===b)return 0;
  const baseline=kind==='score'?V13_BASELINES.score:V13_BASELINES[kind]?.[metric];
@@ -375,8 +386,8 @@ function v13Angle(a,b,kind,metric){
 }
 function v13Value(group,kind,metric){
  if(kind==='score')return Number.isFinite(group?.s?.points)?group.s.points:null;
- const actionNames={standing:'原地投篮',drive:'一次突破上篮',reverse:'篮下反篮'};
- const action=group?.s?.cats?.find(c=>c.name===actionNames[kind]);
+ const name=V13_COMPARE_ACTIONS.find(x=>x.kind===kind)?.name;
+ const action=group?.s?.cats?.find(c=>c.name===name);
  if(!action)return null;
  if(metric==='shots')return action.total;
  if(metric==='made')return action.made;
@@ -411,7 +422,7 @@ function v13Sequence(groups,kind,metric){
 function v13CompareContent(groups){
  if(!groups.length)return '<div class="v13-no-data">请选择至少一场训练</div>';
  let result=`<section class="v13-score"><div class="v13-line-head"><span class="v13-label">总得分</span><span class="v13-line-sub">每次命中按 2 分估算</span></div>${v13Sequence(groups,'score','score')}</section>`;
- for(const action of [{kind:'standing',name:'原地投篮',icon:'◎'},{kind:'drive',name:'一次突破上篮',icon:'↗'},{kind:'reverse',name:'篮下反篮',icon:'⤴'}]){
+ for(const action of V13_COMPARE_ACTIONS){
   result+=`<section class="v13-action" aria-label="${action.name}对比"><div class="v13-action-title"><span class="v13-action-symbol" aria-hidden="true">${action.icon}</span>${action.name}</div>`;
   for(const metric of [{key:'shots',name:'出手'},{key:'made',name:'命中'},{key:'rate',name:'命中率'}]){
    result+=`<div class="v13-metric ${metric.key==='rate'?'v13-rate':''}"><div class="v13-metric-title">${metric.name}</div>${v13Sequence(groups,action.kind,metric.key)}</div>`;
