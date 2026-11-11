@@ -803,7 +803,7 @@ function adv18Compare(){adv18EnsureSelection();const t=adv18GetTemplate(),c=adv1
  ${!t||!c?adv18Empty('需要至少一位顾客和一张模板。请先到「顾客」和「姿势图库」新增。'):`
  <div class="adv-row" style="margin:13px 0 8px"><strong>参考模板 vs 顾客实拍</strong><span class="adv-chip">${esc(c.name)}</span></div>
  <div class="adv-compare"><div class="adv-side"><div class="adv-sidehead">① 姿势模板 <small>原图</small></div><div class="adv-imgwrap" data-adv18="zoom" data-asset="${esc(t.assetId)}">${adv18Img(t.assetId,t.title,'adv-portrait')}</div><div class="adv-sidefooter"><strong>${esc(t.title)}</strong><div class="adv-caption">${esc(t.tech||'未写拍摄技巧')}</div><button class="adv-button" data-adv18="editTemplate" style="margin-top:7px">编辑技巧</button></div></div>
- <div class="adv-side"><div class="adv-sidehead">② 顾客实拍 <small>${ss.length} 张</small></div>${s?`<div class="adv-imgwrap" data-adv18="zoom" data-asset="${esc(s.assetId)}">${adv18Img(s.assetId,'顾客实拍','adv-portrait')}</div>`:`<div class="adv-imgwrap"><div class="adv-noimage">暂无实拍<br>点击下方上传</div></div>`}<div class="adv-sidefooter"><strong>${esc(c.name)}</strong><div class="adv-caption">${s?esc(s.date)+' · '+adv18RecordStatus(s):'尚未拍摄'}</div><button class="adv-button main" data-adv18="chooseShotFile" style="margin-top:7px">＋ 上传实拍</button></div></div></div>
+ <div class="adv-side"><div class="adv-sidehead">② 顾客实拍 <small>${ss.length} 张</small></div>${s?`<div class="adv-imgwrap" data-adv18="zoom" data-asset="${esc(s.assetId)}">${adv18Img(s.assetId,'顾客实拍','adv-portrait')}</div>`:`<div class="adv-imgwrap"><div class="adv-noimage">暂无实拍<br>点击下方上传</div></div>`}<div class="adv-sidefooter"><strong>${esc(c.name)}</strong><div class="adv-caption">${s?esc(s.date)+' · '+adv18RecordStatus(s):'尚未拍摄'}</div><button class="adv-button main" data-adv18="chooseShotFile" style="margin-top:7px">＋ 上传实拍</button>${s?`<button class="adv-button rose" data-adv18="deleteShot" data-id="${esc(s.id)}" style="margin-top:7px;margin-left:7px">删除此实拍</button>`:""}</div></div></div>
  ${adv18.editTemplate?`<div class="adv-panel"><strong>编辑模板技巧</strong><label class="adv-label">摄影要求</label><textarea class="adv-textarea" id="adv18-edit-tech">${esc(t.tech||'')}</textarea><label class="adv-label">通用备注</label><textarea class="adv-textarea" id="adv18-edit-note">${esc(t.note||'')}</textarea><button class="adv-button main" data-adv18="saveTemplateEdit">保存修改</button></div>`:''}
  <div class="adv-panel"><div class="adv-row"><strong>历次实拍</strong><span class="adv-chip">${ss.length} 张</span></div><div class="adv-history">${ss.map(x=>`<button data-adv18="pickShot" data-id="${esc(x.id)}" class="${s?.id===x.id?'active':''}">${adv18Img(x.assetId,'历史实拍')}<span style="font-size:10px">${esc(x.date?.slice(5)||'')}</span><span style="font-size:10px">${x.rating==='good'?'✓满意':x.rating==='redo'?'↻重拍':''}</span></button>`).join('')}<button data-adv18="chooseShotFile" style="border:1px dashed #bbb">＋<br>再拍一张</button></div></div>
  ${s?`<div class="adv-panel"><strong>和模板相比，拍得怎么样？</strong><div class="adv-status" style="margin:9px 0"><button data-adv18="rate" data-rating="good" class="${s.rating==='good'?'yes':''}">✓ 满意，下次继续</button><button data-adv18="rate" data-rating="redo" class="${s.rating==='redo'?'no':''}">↻ 不满意，下次重拍</button></div><label class="adv-label">实拍评价 / 下次改进</label><textarea id="adv18-shot-note" class="adv-textarea" placeholder="例如：人物重心比模板偏高，下次相机再低一点">${esc(s.note||'')}</textarea><button class="adv-button main" data-adv18="saveShotNote" style="margin-top:7px">保存评价</button></div>`:''}
@@ -846,12 +846,28 @@ async function adv18DeleteTemplate(templateId){
  }else adv18Notice('本机已标记删除，云端照片待授权后移入回收站');
 }
 
+async function adv18DeleteShot(shotId){
+ if(adv18.busy){adv18Notice('正在同步，请同步结束后再删除实拍');return}
+ const shot=adv18.data.shots.find(x=>x.id===shotId&&!x.deleted&&x.customerId===adv18.clientId);
+ if(!shot)return;
+ if(!confirm('确认删除这张顾客实拍？\\n\\n仅删除当前选中的一张实拍，不影响姿势模板和其他历史照片。已同步原图将移至 Google Drive 回收站；离线时先标记删除，联网后同步。'))return;
+ shot.deleted=true;shot.updatedAt=Date.now();shot.trashedAt=0;
+ adv18.shotId='';adv18.zoom='';adv18EnsureSelection();
+ adv18SaveAndRender(false);
+ if(adv18IsOnline()){
+  adv18Notice('已删除此实拍，正在同步 Google Drive 回收站');
+  const success=await adv18Sync();
+  if(success)toast('实拍已删除，云端原图已移至回收站');
+  else toast('本机已删除，云端尚未确认，请到「云端同步」重试');
+ }else adv18Notice('本机已删除此实拍，云端原图待连接后移入回收站');
+}
 async function adv18HandleClick(t){const action=t.dataset.adv18;const id=t.dataset.id||'';
  if(action==='view'){adv18.view=t.dataset.view;adv18.adding='';adv18.editTemplate=false;adv18.deleteMenuId='';render();return}
  if(action==='newcustomer'){adv18.adding='customer';adv18.view='customers';render();return}
  if(action==='cancel'){adv18.adding='';render();return}
  if(action==='cancelDelete'){adv18.deleteMenuId='';render();return}
  if(action==='deleteTemplate'){await adv18DeleteTemplate(id);return}
+ if(action==='deleteShot'){await adv18DeleteShot(id);return}
  if(action==='saveCustomer'){const name=($('#adv18-newcustomer-name')?.value||'').trim();if(!name)throw Error('请输入顾客名称');const c={id:adv18Id(),name,created:Date.now(),updatedAt:Date.now()};adv18.data.customers.push(c);adv18.clientId=c.id;adv18.adding='';adv18SaveAndRender();return}
  if(action==='pickCustomer'){adv18.clientId=id;adv18.view='compare';adv18SaveAndRender(false);return}
  if(action==='addtemplate'){adv18.view='gallery';adv18.adding='template';render();return}
